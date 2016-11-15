@@ -14,11 +14,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//�������
+//锟斤拷锟斤拷锟斤拷锟�
 //123343243
 //qqqqqqqqqqq
         setContentView(R.layout.ac_home);
 
-        //你好�?
+        //浣犲ソ锟�?
     }
 }
