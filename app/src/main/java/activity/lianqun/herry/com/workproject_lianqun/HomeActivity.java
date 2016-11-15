@@ -9,15 +9,16 @@ public class HomeActivity extends AppCompatActivity {
     private String str_www;
     private Button btn;
 
+    @SuppressWarnings("LossyEncoding")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//Ìí¼ÓÊý¾Ý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //123343243
 //qqqqqqqqqqq
         setContentView(R.layout.ac_home);
 
-        //ä½ å¥½å•?
+        //ä½ å¥½ï¿½?
     }
 }
