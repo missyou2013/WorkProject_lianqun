@@ -17,5 +17,7 @@ public class HomeActivity extends AppCompatActivity {
 //123343243
 //qqqqqqqqqqq
         setContentView(R.layout.ac_home);
+
+        //你好�?
     }
 }
