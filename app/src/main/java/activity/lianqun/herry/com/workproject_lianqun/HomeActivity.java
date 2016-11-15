@@ -6,7 +6,7 @@ import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private String str_www;
+    private String str_wwwq;
     private Button btn;
 
     @SuppressWarnings("LossyEncoding")
@@ -19,6 +19,6 @@ public class HomeActivity extends AppCompatActivity {
 //qqqqqqqqqqq
         setContentView(R.layout.ac_home);
 
-        //你好�?
+
     }
 }
