@@ -6,13 +6,13 @@ import android.os.Bundle;
 public class HomeActivity extends AppCompatActivity {
 
     private String str;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//Ìí¼ÓÊý¾Ý
-//123343243
-//qqqqqqqqqqq
         setContentView(R.layout.ac_home);
+
+        //ä½ å¥½å•Š
     }
 }
