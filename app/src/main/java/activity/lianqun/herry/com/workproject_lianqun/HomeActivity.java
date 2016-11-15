@@ -10,7 +10,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+//Ìí¼ÓÊý¾Ý
+//123343243
+//qqqqqqqqqqq
         setContentView(R.layout.ac_home);
     }
 }
