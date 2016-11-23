@@ -12,9 +12,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="@+id/ac_home"
         app:layout_constraintLeft_toLeftOf="@+id/ac_home"
+        app:layout_constraintTop_toTopOf="@+id/ac_home"
         app:layout_constraintRight_toRightOf="@+id/ac_home"
-        app:layout_constraintTop_toTopOf="@+id/ac_home" />
+        app:layout_constraintBottom_toBottomOf="@+id/ac_home" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="370dp"
+        android:id="@+id/button2" />
 
 </android.support.constraint.ConstraintLayout>
