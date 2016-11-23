@@ -1,8 +1,7 @@
 package activity.lianqun.herry.com.workproject_lianqun.constants;
 
 /**
- * Created by Stay on 4/2/2016.
- * Powered by www.stay4it.com
+ * Created by Administrator on 2016/11/16.
  */
 public class ConstantValues {
     public static final int STATUS_FORCE_KILLED = -1;

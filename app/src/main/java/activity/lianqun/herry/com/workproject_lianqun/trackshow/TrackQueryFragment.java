@@ -24,13 +24,11 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
+import com.baidu.trace.OnEntityListener;
 import com.baidu.trace.OnTrackListener;
-import com.baidu.trackutils.DateDialog;
-import com.baidu.trackutils.DateDialog.CallBack;
-import com.baidu.trackutils.DateDialog.PriorityListener;
-import com.baidu.trackutils.DateUtils;
-import com.baidu.trackutils.GsonService;
-import com.baidu.trackutils.HistoryTrackData;
+import com.baidu.trace.TraceLocation;
+import com.j256.ormlite.field.DatabaseField;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,13 +38,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
+import activity.lianqun.herry.com.workproject_lianqun.trackutils.DateDialog;
+import activity.lianqun.herry.com.workproject_lianqun.trackutils.DateUtils;
+import activity.lianqun.herry.com.workproject_lianqun.trackutils.GsonService;
+import activity.lianqun.herry.com.workproject_lianqun.trackutils.HistoryTrackData;
+
 /**
  * 轨迹查询
  */
 @SuppressLint("NewApi")
 public class TrackQueryFragment extends Fragment implements OnClickListener {
 
-    private TrackApplication trackApp = null;
+    private CustomApplication trackApp = null;
 
     private Button btnDate = null;
 
@@ -54,6 +59,7 @@ public class TrackQueryFragment extends Fragment implements OnClickListener {
 
     private Button btnDistance = null;
 
+    private Button btn_location;
     private int startTime = 0;
     private int endTime = 0;
 
@@ -116,6 +122,10 @@ public class TrackQueryFragment extends Fragment implements OnClickListener {
 
         tvDatetime = (TextView) view.findViewById(R.id.tv_datetime);
         tvDatetime.setText(" 当前日期 : " + DateUtils.getCurrentDate() + " ");
+
+        btn_location = (Button) view.findViewById(R.id.location);
+        btn_location.setOnClickListener(this);
+
 
     }
 
@@ -197,10 +207,10 @@ public class TrackQueryFragment extends Fragment implements OnClickListener {
             day = date[2];
         }
 
-        DateDialog dateDiolog = new DateDialog(this.getActivity(), new PriorityListener() {
+        final DateDialog dateDiolog = new DateDialog(this.getActivity(), new DateDialog.PriorityListener() {
 
             public void refreshPriorityUI(String sltYear, String sltMonth,
-                                          String sltDay, CallBack back) {
+                                          String sltDay, DateDialog.CallBack back) {
 
                 Log.d("TGA", sltYear + sltMonth + sltDay);
                 year = Integer.parseInt(sltYear);
@@ -209,13 +219,14 @@ public class TrackQueryFragment extends Fragment implements OnClickListener {
                 String st = year + "年" + month + "月" + day + "日0时0分0秒";
                 String et = year + "年" + month + "月" + day + "日23时59分59秒";
 
+                ;
                 startTime = Integer.parseInt(DateUtils.getTimeToStamp(st));
                 endTime = Integer.parseInt(DateUtils.getTimeToStamp(et));
 
                 back.execute();
             }
 
-        }, new CallBack() {
+        }, new DateDialog.CallBack() {
 
             public void execute() {
 
@@ -288,6 +299,22 @@ public class TrackQueryFragment extends Fragment implements OnClickListener {
                 queryDistance(0, null);
                 break;
 
+//            case R.id.location:
+//                trackApp.getClient().queryRealtimeLoc(trackApp.getServiceId(), new OnEntityListener() {
+//                    @Override
+//                    public void onReceiveLocation(TraceLocation traceLocation) {
+//                        super.onReceiveLocation(traceLocation);
+//
+//                        Log.e("tag", "---------" + traceLocation.getLongitude());
+//                    }
+//
+//                    @Override
+//                    public void onRequestFailedCallback(String s) {
+//                        Log.e("tag", "---------" + s.toString());
+//                    }
+//                });
+
+//                break;
             default:
                 break;
         }
@@ -429,7 +456,7 @@ public class TrackQueryFragment extends Fragment implements OnClickListener {
         polyline = null;
     }
 
-    public static final TrackQueryFragment newInstance(TrackApplication trackApp) {
+    public static final TrackQueryFragment newInstance(CustomApplication trackApp) {
         TrackQueryFragment fragment = new TrackQueryFragment();
         fragment.trackApp = trackApp;
         return fragment;

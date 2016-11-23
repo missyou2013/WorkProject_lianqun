@@ -1,0 +1,27 @@
+1.公司列表
+{
+    "result": "true",
+    "companys": [
+        {
+            "name": "青岛连群物业",
+            "id": 14,
+            "code": "000000012",
+            "page": false,
+            "pageSize": 10,
+            "pageNum": 1,
+            "totalCount": 0,
+            "pageSum": 0,
+            "sum": false,
+            "status": 0,
+            "companyid": 0,
+            "userid": 0,
+            "curDate": "2016-11-23",
+            "insertDate": "2016-11-22",
+            "updateDate": null,
+            "mtype": 0,
+            "cname": null,
+            "uname": null
+        }
+    ]
+}
+2.登录

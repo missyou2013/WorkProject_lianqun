@@ -5,8 +5,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.stay4it.framework.widgets.pull.BaseListAdapter;
-import com.stay4it.framework.widgets.pull.FooterSpanSizeLookup;
+import activity.lianqun.herry.com.workproject_lianqun.widgets.pull.BaseListAdapter;
+import activity.lianqun.herry.com.workproject_lianqun.widgets.pull.FooterSpanSizeLookup;
+
 
 /**
  * Created by Stay on 5/3/16.

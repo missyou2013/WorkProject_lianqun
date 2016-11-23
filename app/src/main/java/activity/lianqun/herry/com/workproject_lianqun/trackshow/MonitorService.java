@@ -9,9 +9,11 @@ import android.os.IBinder;
 
 import java.util.List;
 
+import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
+
 public class MonitorService extends Service {
 
-    private TrackApplication trackApp = null;
+    private CustomApplication trackApp = null;
     protected static boolean isCheck = false;
 
     protected static boolean isRunning = false;
@@ -22,7 +24,7 @@ public class MonitorService extends Service {
     public void onCreate() {
         // TODO Auto-generated method stub
         System.out.println("MonitorService onCreate");
-        trackApp = (TrackApplication) getApplication();
+        trackApp = (CustomApplication) getApplication();
         super.onCreate();
 
     }

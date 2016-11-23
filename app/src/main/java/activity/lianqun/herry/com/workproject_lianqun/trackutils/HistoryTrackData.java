@@ -1,10 +1,10 @@
 package activity.lianqun.herry.com.workproject_lianqun.trackutils;
 
+import com.baidu.mapapi.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import com.baidu.mapapi.model.LatLng;
 
 /**
  * 历史轨迹数据

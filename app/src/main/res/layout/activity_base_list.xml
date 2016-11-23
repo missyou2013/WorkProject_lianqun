@@ -4,9 +4,9 @@
 
     <include layout="@layout/widget_toolbar" />
 
-    <com.stay4it.framework.widgets.pull.PullRecycler
-        android:id="@id/pullRecycler"
-        android:layout_below="@id/toolbar"
+    <activity.lianqun.herry.com.workproject_lianqun.widgets.pull.PullRecycler
+        android:id="@+id/pullRecycler"
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

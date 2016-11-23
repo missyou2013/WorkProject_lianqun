@@ -11,13 +11,13 @@
 
     <fragment
         android:id="@+id/fragment_title"
-        android:name="com.baidu.trackshow.TitleFragment"
+        android:name="activity.lianqun.herry.com.workproject_lianqun.trackshow.TitleFragment"
         android:layout_width="match_parent"
         android:layout_height="45dp" />
 
     <fragment
         android:id="@+id/fragment_bottom"
-        android:name="com.baidu.trackshow.BottomFragment"
+        android:name="activity.lianqun.herry.com.workproject_lianqun.trackshow.BottomFragment"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"

@@ -6,7 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.stay4it.framework.R;
+import activity.lianqun.herry.com.workproject_lianqun.R;
+
 
 /**
  * Created by Stay on 7/3/16.

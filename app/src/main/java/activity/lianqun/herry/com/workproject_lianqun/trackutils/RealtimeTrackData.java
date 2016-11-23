@@ -1,8 +1,8 @@
 package activity.lianqun.herry.com.workproject_lianqun.trackutils;
 
-import java.util.List;
-
 import com.baidu.mapapi.model.LatLng;
+
+import java.util.List;
 
 /**
  * 实时轨迹数据

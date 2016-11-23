@@ -6,7 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.baidu.trackshow.R;
+import activity.lianqun.herry.com.workproject_lianqun.R;
+
 
 public class TitleFragment extends Fragment {
 
