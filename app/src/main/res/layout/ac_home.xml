@@ -1,35 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ac_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/home_background"
     android:orientation="vertical"
     tools:context="activity.lianqun.herry.com.workproject_lianqun.activity.HomeActivity">
 
     <include layout="@layout/widget_toolbar" />
 
-    <Button
-        android:id="@+id/btn_details"
+    <com.youth.banner.Banner
+        android:id="@+id/home_banner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="the other Activity" />
+        android:layout_height="200dp" />
 
-    <Button
-        android:id="@+id/btn_details2"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="右上角带字" />
+        android:layout_margin="10dp"
+        android:text="工作"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/textSize20sp" />
 
-    <Button
-        android:id="@+id/btn_map"
+    <RelativeLayout
+        android:id="@+id/relativeLayout_kaoQin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="地图" />
+        android:layout_height="@dimen/home_relativeLayout"
+        android:background="@color/white">
 
-    <Button
-        android:id="@+id/listMore"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+
+            android:id="@+id/flag1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/flag1"
+            android:layout_alignLeft="@+id/flag1"
+            android:layout_alignTop="@+id/imageView"
+            android:text="考勤"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize20sp"
+
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/flag1"
+            android:layout_below="@+id/flag1"
+            android:layout_centerVertical="true"
+            android:text="上下班打卡"
+            android:textColor="@color/gray_shallow"
+            android:textSize="@dimen/ textSize20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/marginRight10dp"
+            app:srcCompat="@mipmap/arrow_right" />
+    </RelativeLayout>
+
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="下拉更多" />
+        android:layout_height="1sp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:background="@color/gray_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_relativeLayout"
+        android:background="@color/white"
+        android:id="@+id/relativeLayout_shenQing">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+
+            android:id="@+id/flag2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/flag2"
+            android:layout_alignLeft="@+id/flag2"
+            android:layout_alignTop="@+id/imageView2"
+            android:text="申请"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize20sp"
+
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/flag2"
+            android:layout_below="@+id/flag2"
+            android:layout_centerVertical="true"
+            android:text="请假、报销申请"
+            android:textColor="@color/gray_shallow"
+            android:textSize="@dimen/textSize20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/marginRight10dp"
+            app:srcCompat="@mipmap/arrow_right" />
+    </RelativeLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:background="@color/gray_line" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_relativeLayout"
+        android:background="@color/white"
+        android:id="@+id/relativeLayout_trace">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+
+            android:id="@+id/flag3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/flag3"
+            android:layout_alignLeft="@+id/flag3"
+            android:layout_alignTop="@+id/imageView3"
+            android:text="工作轨迹"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize20sp"
+
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/flag3"
+            android:layout_below="@+id/flag3"
+            android:layout_centerVertical="true"
+            android:text="掌控出勤轨迹，提高外勤效率"
+            android:textColor="@color/gray_shallow"
+            android:textSize="@dimen/textSize20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/marginRight10dp"
+            app:srcCompat="@mipmap/arrow_right" />
+    </RelativeLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:background="@color/gray_line" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_relativeLayout"
+        android:background="@color/white"
+        android:id="@+id/relativeLayout_ad">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+
+            android:id="@+id/flag4"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageView4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/flag4"
+            android:layout_alignLeft="@+id/flag4"
+            android:layout_alignTop="@+id/imageView4"
+            android:text="通知公告"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize20sp"
+
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/flag4"
+            android:layout_below="@+id/flag4"
+            android:layout_centerVertical="true"
+            android:text="一呼百应，随时随地掌握动态"
+            android:textColor="@color/gray_shallow"
+            android:textSize="@dimen/textSize20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/marginRight10dp"
+            app:srcCompat="@mipmap/arrow_right" />
+    </RelativeLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:background="@color/gray_line" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_relativeLayout"
+        android:background="@color/white"
+        android:id="@+id/relativeLayout_my">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+
+            android:id="@+id/flag5"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/flag5"
+            android:layout_alignLeft="@+id/flag5"
+            android:layout_alignTop="@+id/imageView5"
+            android:text="我的"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize20sp"
+
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/flag5"
+            android:layout_below="@+id/flag5"
+            android:layout_centerVertical="true"
+            android:text="个人信息"
+            android:textColor="@color/gray_shallow"
+            android:textSize="@dimen/textSize20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/marginRight10dp"
+            app:srcCompat="@mipmap/arrow_right" />
+    </RelativeLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:background="@color/gray_line" />
+
 </LinearLayout>

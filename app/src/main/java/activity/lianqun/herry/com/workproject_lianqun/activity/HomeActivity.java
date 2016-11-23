@@ -4,44 +4,57 @@ package activity.lianqun.herry.com.workproject_lianqun.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.RelativeLayout;
+
+import com.youth.banner.Banner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.adpter.GlideImageLoader;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
-import activity.lianqun.herry.com.workproject_lianqun.trackshow.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
 public class HomeActivity extends BaseActivity {
-
-
-    @BindView(R.id.btn_details)
-    Button btnDetails;
-    @BindView(R.id.btn_details2)
-    Button btnDetails2;
-    @BindView(R.id.btn_map)
-    Button btn_map;
-    @BindView(R.id.listMore)
-    Button listMore;
+    @BindView(R.id.relativeLayout_kaoQin)
+    RelativeLayout relativeLayoutKaoQin;
+    @BindView(R.id.relativeLayout_shenQing)
+    RelativeLayout relativeLayoutShenQing;
+    @BindView(R.id.relativeLayout_trace)
+    RelativeLayout relativeLayoutTrace;
+    @BindView(R.id.relativeLayout_ad)
+    RelativeLayout relativeLayoutAd;
+    @BindView(R.id.relativeLayout_my)
+    RelativeLayout relativeLayoutMy;
+    private Banner banner;
+    private List<String> list_images = new ArrayList<>();
 
 
     @Override
     protected void setUpContentView() {
         setContentView(R.layout.ac_home, R.string.activity_home, MODE_HOME);
         ButterKnife.bind(HomeActivity.this);
+
     }
+
 
     @Override
     protected void setUpView() {
-//findViewById
+
+        list_images.add("http://img2.3lian.com/2014/c7/12/d/77.jpg");
+        list_images.add("http://pic3.bbzhi.com/fengjingbizhi/gaoqingkuanpingfengguangsheyingps/show_fengjingta_281299_11.jpg");
+        banner = (Banner) findViewById(R.id.home_banner);
+        banner.setImages(list_images).setImageLoader(new GlideImageLoader()).start();
 
     }
 
     @Override
     protected void setUpData(Bundle savedInstanceState) {
-// data
+
     }
 
     @Override
@@ -53,27 +66,24 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.btn_details, R.id.btn_details2, R.id.btn_map,R.id.listMore})
+    @OnClick({R.id.relativeLayout_kaoQin, R.id.relativeLayout_shenQing, R.id.relativeLayout_trace, R.id.relativeLayout_ad, R.id.relativeLayout_my})
     public void onClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
-            case R.id.btn_details:
-                Intent intent = new Intent(this, OtherActivity.class);
-                startActivity(intent);
+            case R.id.relativeLayout_kaoQin:
+                intent.setClass(HomeActivity.this, KaoQinActivity.class);
                 break;
-            case R.id.btn_details2:
-                Intent intent2 = new Intent(this, OtherActivity2.class);
-                startActivity(intent2);
+            case R.id.relativeLayout_shenQing:
                 break;
-            case R.id.btn_map:
-                Intent intent3 = new Intent(this, MainActivity.class);
-                startActivity(intent3);
+            case R.id.relativeLayout_trace:
                 break;
-            case R.id.listMore:
-                Intent intent4 = new Intent(this, ListDataActivity.class);
-                startActivity(intent4);
+            case R.id.relativeLayout_ad:
+                break;
+            case R.id.relativeLayout_my:
                 break;
         }
+
+            startActivity(intent);
+
     }
-
-
 }
