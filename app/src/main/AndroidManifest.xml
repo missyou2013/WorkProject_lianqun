@@ -69,6 +69,11 @@
         </service>
 
 
+
+        <!-- 考勤界面-->
+        <activity android:name=".activity.KaoQinActivity" />
+
+
     </application>
 
 </manifest>
