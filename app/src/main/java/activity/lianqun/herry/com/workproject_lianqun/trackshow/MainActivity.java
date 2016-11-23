@@ -14,9 +14,13 @@ import android.widget.Button;
 
 import com.baidu.mapapi.map.MapView;
 
+import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
+
+
 public class MainActivity extends FragmentActivity implements OnClickListener {
 
-    private TrackApplication trackApp = null;
+    private CustomApplication trackApp = null;
 
     private Button btnTrackUpload;
 
@@ -37,7 +41,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        trackApp = (TrackApplication) getApplicationContext();
+
+        trackApp = (CustomApplication) getApplicationContext();
         // 初始化组件
         initComponent();
     }
@@ -187,7 +192,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         super.onDestroy();
         trackApp.getClient().onDestroy();
         trackApp.getBmapView().onDestroy();
-        android.os.Process.killProcess(android.os.Process.myPid());
+        //android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     /**

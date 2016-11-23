@@ -1,7 +1,5 @@
 package activity.lianqun.herry.com.workproject_lianqun.trackshow;
 
-import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -9,8 +7,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ import com.baidu.trace.OnEntityListener;
 import com.baidu.trace.OnStartTraceListener;
 import com.baidu.trace.OnStopTraceListener;
 import com.baidu.trace.TraceLocation;
-import com.baidu.trackutils.DateUtils;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,12 +45,19 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.activity.OtherActivity;
+import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
+import activity.lianqun.herry.com.workproject_lianqun.service.PollingService;
+import activity.lianqun.herry.com.workproject_lianqun.trackutils.DateUtils;
+import activity.lianqun.herry.com.workproject_lianqun.utils.PollingUtils;
+
 /**
  * 轨迹追踪
  */
 public class TrackUploadFragment extends Fragment {
 
-    private TrackApplication trackApp = null;
+    private CustomApplication trackApp = null;
 
     private Button btnStartTrace = null;
 
@@ -230,12 +238,27 @@ public class TrackUploadFragment extends Fragment {
             }
         });
 
+        trackApp.getClient().queryRealtimeLoc(trackApp.getServiceId(), new OnEntityListener() {
+            @Override
+            public void onReceiveLocation(TraceLocation traceLocation) {
+                super.onReceiveLocation(traceLocation);
+
+                Log.e("tag", "---------" + traceLocation.getLongitude());
+            }
+
+            @Override
+            public void onRequestFailedCallback(String s) {
+                Log.e("tag", "---------" + s.toString());
+            }
+        });
+
     }
 
     public void startMonitorService() {
         serviceIntent = new Intent(trackApp,
-                com.baidu.trackshow.MonitorService.class);
+                activity.lianqun.herry.com.workproject_lianqun.trackshow.MonitorService.class);
         trackApp.startService(serviceIntent);
+
     }
 
     /**
@@ -583,7 +606,7 @@ public class TrackUploadFragment extends Fragment {
         }
     }
 
-    public static final TrackUploadFragment newInstance(TrackApplication trackApp) {
+    public static final TrackUploadFragment newInstance(CustomApplication trackApp) {
         TrackUploadFragment fragment = new TrackUploadFragment();
         fragment.trackApp = trackApp;
         return fragment;

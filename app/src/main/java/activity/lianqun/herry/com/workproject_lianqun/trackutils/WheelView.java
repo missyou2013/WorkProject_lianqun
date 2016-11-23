@@ -22,12 +22,14 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-import com.baidu.trackshow.R;
+
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import activity.lianqun.herry.com.workproject_lianqun.R;
 
 public class WheelView extends View {
     private static final int SCROLLING_DURATION = 400;

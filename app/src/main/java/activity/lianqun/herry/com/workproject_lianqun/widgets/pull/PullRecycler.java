@@ -7,8 +7,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.stay4it.framework.R;
-import com.stay4it.framework.widgets.pull.layoutmanager.ILayoutManager;
+import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.widgets.pull.layoutmanager.ILayoutManager;
+
 
 /**
  * Created by Stay on 5/3/16.

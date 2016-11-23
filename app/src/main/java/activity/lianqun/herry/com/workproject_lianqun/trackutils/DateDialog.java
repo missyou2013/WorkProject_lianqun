@@ -1,11 +1,5 @@
 package activity.lianqun.herry.com.workproject_lianqun.trackutils;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-
-import com.baidu.trackshow.R;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -15,6 +9,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+
+
+
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
+import activity.lianqun.herry.com.workproject_lianqun.R;
 
 public class DateDialog extends Dialog implements
         View.OnClickListener {
@@ -38,8 +40,9 @@ public class DateDialog extends Dialog implements
     private WheelView yearview = null;
     private WheelView dayview = null;
     @SuppressLint("InlinedApi")
-    private static int theme = android.R.style.Theme_Holo_Light_Dialog; // 主题
-    // private static int theme = android.R.style.Theme_Black_NoTitleBar; // 主题
+    private static int theme = android.R.style.Theme_Holo_Light_Dialog_NoActionBar; // 主题
+//    private static int theme = android.R.style.Theme_Holo_Light_Dialog; // 主题
+//     private static int theme = android.R.style.Theme_Black_NoTitleBar; // 主题
     private LinearLayout dateLayout;
     private int width; // 对话框宽度
     private int height; // 对话框高度

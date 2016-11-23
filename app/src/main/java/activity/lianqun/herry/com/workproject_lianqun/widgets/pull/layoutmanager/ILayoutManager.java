@@ -2,7 +2,8 @@ package activity.lianqun.herry.com.workproject_lianqun.widgets.pull.layoutmanage
 
 import android.support.v7.widget.RecyclerView;
 
-import com.stay4it.framework.widgets.pull.BaseListAdapter;
+import activity.lianqun.herry.com.workproject_lianqun.widgets.pull.BaseListAdapter;
+
 
 /**
  * Created by Stay on 5/3/16.

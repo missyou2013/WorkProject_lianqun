@@ -8,12 +8,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
-import com.stay4it.framework.constants.ConstantValues;
-import com.stay4it.framework.utils.L;
+import activity.lianqun.herry.com.workproject_lianqun.constants.ConstantValues;
+import activity.lianqun.herry.com.workproject_lianqun.utils.L;
 
 /**
- * Created by Stay on 4/2/2016.
- * Powered by www.stay4it.com
+ * Created by Administrator on 2016/11/16.
  */
 public class AppStatusTracker implements Application.ActivityLifecycleCallbacks {
     private static final long MAX_INTERVAL = 5 * 60 * 1000;

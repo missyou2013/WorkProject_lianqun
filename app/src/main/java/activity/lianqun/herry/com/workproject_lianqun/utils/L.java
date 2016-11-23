@@ -2,24 +2,24 @@ package activity.lianqun.herry.com.workproject_lianqun.utils;
 
 import android.util.Log;
 
-import com.stay4it.framework.BuildConfig;
+import activity.lianqun.herry.com.workproject_lianqun.BuildConfig;
+
 
 /**
- * @author Stay
- * @version create time：Sep 15, 2014 12:56:14 PM
+ * Created by Administrator on 2016/11/16.
  */
 public class L {
     private static final String TAG = "stay4it";
-    public static boolean DEBUG = BuildConfig.DEBUG;
+    public static boolean DEBUG = true;
 
     public static void d(String msg) {
-        if (DEBUG){
+        if (DEBUG) {
             Log.d(TAG, msg);
         }
     }
 
     public static void e(String msg) {
-        if (DEBUG){
+        if (DEBUG) {
             Log.e(TAG, msg);
         }
     }

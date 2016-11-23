@@ -49,4 +49,13 @@
         android:text="@string/track_distance"
         android:textColor="#000000" />
 
+    <Button
+        android:text="定位"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_distance"
+        android:layout_alignLeft="@+id/btn_distance"
+        android:layout_alignStart="@+id/btn_distance"
+        android:id="@+id/location" />
+
 </RelativeLayout>

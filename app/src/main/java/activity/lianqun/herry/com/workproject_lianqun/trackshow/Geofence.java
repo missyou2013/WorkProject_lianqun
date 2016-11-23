@@ -37,7 +37,7 @@ import com.baidu.trace.OnGeoFenceListener;
 import com.baidu.trace.model.CreateLocalFenceResult;
 import com.baidu.trace.model.DeleteLocalFenceResult;
 import com.baidu.trace.model.LocalCircularFence;
-import com.baidu.trackutils.DateUtils;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,13 +46,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
+import activity.lianqun.herry.com.workproject_lianqun.trackutils.DateUtils;
+
 /**
  * 地理围栏
  */
 @SuppressLint("NewApi")
 public class Geofence implements OnClickListener {
 
-    private TrackApplication trackApp = null;
+    private CustomApplication trackApp = null;
 
     private Context mContext = null;
 
@@ -1064,7 +1068,7 @@ public class Geofence implements OnClickListener {
         }
     }
 
-    public Geofence(Context context, TrackApplication trackApp, LayoutInflater inflater) {
+    public Geofence(Context context, CustomApplication trackApp, LayoutInflater inflater) {
         initOnGeoFenceListener();
         this.trackApp = trackApp;
         this.mContext = context;
