@@ -38,4 +38,17 @@
     <string name="circular_fence_caption">请点击地图标记围栏圆心</string>
     <string name="vertexes_fence_caption">请按顺时针或逆时针方向点击地图</string>
     <string name="listData">下拉更多</string>
+
+
+
+    <string name="ac_login_spinner_txt">请选择企业</string>
+    <string name="ac_login_username_txt">用户名</string>
+    <string name="ac_login_pwd_txt">密码</string>
+    <string name="ac_login_forgot_pwd_txt">忘记密码</string>
+    <string name="ac_login_btn_login_txt">登录</string>
+    <string name="ac_login_error_promit_txt">用户名或密码错误</string>
+    <string name="ac_login_error_net_txt">网络异常，请检查您的网络</string>
+
+    <string name="activity_kaoqin">考勤</string>
+
 </resources>
