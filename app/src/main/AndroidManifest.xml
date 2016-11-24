@@ -71,6 +71,8 @@
 
         <!-- 考勤界面-->
         <activity android:name=".activity.KaoQinActivity" />
+        <!-- 考勤查看全部界面-->
+        <activity android:name=".activity.KaoQinDetailsActivity" />
 
 
     </application>

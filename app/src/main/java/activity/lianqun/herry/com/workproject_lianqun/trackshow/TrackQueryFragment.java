@@ -189,63 +189,63 @@ public class TrackQueryFragment extends Fragment implements OnClickListener {
      * 轨迹查询(先选择日期，再根据是否纠偏，发送请求)
      */
     private void queryTrack() {
-        // 选择日期
-        int[] date = null;
-        DisplayMetrics dm = new DisplayMetrics();
-        this.getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
+            // 选择日期
+            int[] date = null;
+            DisplayMetrics dm = new DisplayMetrics();
+            this.getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+            int width = dm.widthPixels;
+            int height = dm.heightPixels;
 
-        if (year == 0 && month == 0 && day == 0) {
-            String curDate = DateUtils.getCurrentDate();
-            date = DateUtils.getYMDArray(curDate, "-");
-        }
-
-        if (date != null) {
-            year = date[0];
-            month = date[1];
-            day = date[2];
-        }
-
-        final DateDialog dateDiolog = new DateDialog(this.getActivity(), new DateDialog.PriorityListener() {
-
-            public void refreshPriorityUI(String sltYear, String sltMonth,
-                                          String sltDay, DateDialog.CallBack back) {
-
-                Log.d("TGA", sltYear + sltMonth + sltDay);
-                year = Integer.parseInt(sltYear);
-                month = Integer.parseInt(sltMonth);
-                day = Integer.parseInt(sltDay);
-                String st = year + "年" + month + "月" + day + "日0时0分0秒";
-                String et = year + "年" + month + "月" + day + "日23时59分59秒";
-
-                ;
-                startTime = Integer.parseInt(DateUtils.getTimeToStamp(st));
-                endTime = Integer.parseInt(DateUtils.getTimeToStamp(et));
-
-                back.execute();
+            if (year == 0 && month == 0 && day == 0) {
+                String curDate = DateUtils.getCurrentDate();
+                date = DateUtils.getYMDArray(curDate, "-");
             }
 
-        }, new DateDialog.CallBack() {
+            if (date != null) {
+                year = date[0];
+                month = date[1];
+                day = date[2];
+            }
 
-            public void execute() {
+            final DateDialog dateDiolog = new DateDialog(this.getActivity(), new DateDialog.PriorityListener() {
 
-                tvDatetime.setText(" 当前日期 : " + year + "-" + month + "-" + day + " ");
-                // 选择完日期，根据是否纠偏发送轨迹查询请求
-                if (0 == isProcessed) {
-                    Toast.makeText(getActivity(), "正在查询历史轨迹，请稍候", Toast.LENGTH_SHORT).show();
-                    queryHistoryTrack(0, null);
-                } else {
-                    Toast.makeText(getActivity(), "正在查询纠偏后的历史轨迹，请稍候", Toast.LENGTH_SHORT).show();
-                    queryHistoryTrack(1, "need_denoise=1,need_vacuate=1,need_mapmatch=1");
+                public void refreshPriorityUI(String sltYear, String sltMonth,
+                                              String sltDay, DateDialog.CallBack back) {
+
+                    Log.d("TGA", sltYear + sltMonth + sltDay);
+                    year = Integer.parseInt(sltYear);
+                    month = Integer.parseInt(sltMonth);
+                    day = Integer.parseInt(sltDay);
+                    String st = year + "年" + month + "月" + day + "日0时0分0秒";
+                    String et = year + "年" + month + "月" + day + "日23时59分59秒";
+
+                    ;
+                    startTime = Integer.parseInt(DateUtils.getTimeToStamp(st));
+                    endTime = Integer.parseInt(DateUtils.getTimeToStamp(et));
+
+                    back.execute();
                 }
-            }
-        }, year, month, day, width, height, "选择日期", 1);
 
-        Window window = dateDiolog.getWindow();
-        window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置
-        dateDiolog.setCancelable(true);
-        dateDiolog.show();
+            }, new DateDialog.CallBack() {
+
+                public void execute() {
+
+                    tvDatetime.setText(" 当前日期 : " + year + "-" + month + "-" + day + " ");
+                    // 选择完日期，根据是否纠偏发送轨迹查询请求
+                    if (0 == isProcessed) {
+                        Toast.makeText(getActivity(), "正在查询历史轨迹，请稍候", Toast.LENGTH_SHORT).show();
+                        queryHistoryTrack(0, null);
+                    } else {
+                        Toast.makeText(getActivity(), "正在查询纠偏后的历史轨迹，请稍候", Toast.LENGTH_SHORT).show();
+                        queryHistoryTrack(1, "need_denoise=1,need_vacuate=1,need_mapmatch=1");
+                    }
+                }
+            }, year, month, day, width, height, "选择日期", 1);
+
+            Window window = dateDiolog.getWindow();
+            window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置
+            dateDiolog.setCancelable(true);
+            dateDiolog.show();
 
     }
 

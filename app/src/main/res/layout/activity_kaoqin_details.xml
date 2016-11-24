@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--考勤查看全部-->
+    <include layout="@layout/widget_toolbar" />
+
+    <TextView
+        android:id="@+id/time_chose"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height50dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="2016年11月"
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/textSize16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height50dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/line_ver"
+            android:gravity="center"
+            android:text="日期"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize16sp" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/line_ver"
+            android:gravity="center"
+            android:text="打卡时间"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize16sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="备注"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize16sp" />
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--<com.github.jdsjlzx.recyclerview.LRecyclerView-->
+        <!--android:id="@+id/ry_kaoqin_details"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"></com.github.jdsjlzx.recyclerview.LRecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ry_kaoqin_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

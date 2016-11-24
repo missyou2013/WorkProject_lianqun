@@ -44,4 +44,5 @@ dependencies {
     compile files('libs/BaiduTraceSDK_v2_1_15.jar')
     compile files('libs/gson-2.2.1.jar')
     compile files('libs/BaiduLBS_Android_location.jar')
+    compile 'com.github.jdsjlzx:LRecyclerView:1.0.8'
 }

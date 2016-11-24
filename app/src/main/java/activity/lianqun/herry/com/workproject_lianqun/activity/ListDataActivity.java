@@ -22,6 +22,12 @@ public class ListDataActivity extends BaseListActivity<String> {
     private int page = 1;
 
     @Override
+    protected void setUpContentView() {
+        super.setUpContentView();
+        setContentView(R.layout.activity_kaoqin_details);
+    }
+
+    @Override
     protected void setUpTitle(int titleResId) {
         super.setUpTitle(R.string.listData);
     }
@@ -29,7 +35,7 @@ public class ListDataActivity extends BaseListActivity<String> {
     @Override
     protected void setUpData(Bundle savedInstanceState) {
         super.setUpData(savedInstanceState);
-         recycler.setRefreshing();
+        recycler.setRefreshing();
     }
 
     @Override
