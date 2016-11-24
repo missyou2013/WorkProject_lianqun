@@ -119,6 +119,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                                 String result = object.optString("result");
                                 if ("true".equals(result)) {
                                     Toast.makeText(ForgotPasswordActivity.this, getText(R.string.ac_again_login), Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
                                     finish();
                                 } else {
                                     Toast.makeText(ForgotPasswordActivity.this, getText(R.string.ac_forgot_fail), Toast.LENGTH_LONG).show();

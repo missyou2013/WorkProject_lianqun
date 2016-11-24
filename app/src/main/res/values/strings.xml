@@ -58,7 +58,7 @@
     <string name="ac_forgot_fail">修改密码失败</string>
     <string name="ac_again_login">修改成功，请重新登录</string>
     <string name="loading">加载中......</string>
-
+    <string name="ac_my">我</string>
 
     <string name="activity_kaoqin">考勤</string>
 

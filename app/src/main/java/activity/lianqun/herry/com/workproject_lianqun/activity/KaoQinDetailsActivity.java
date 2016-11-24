@@ -1,6 +1,7 @@
 package activity.lianqun.herry.com.workproject_lianqun.activity;
 
 import android.os.Bundle;
+
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 
@@ -23,6 +24,8 @@ import activity.lianqun.herry.com.workproject_lianqun.trackutils.DateUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+
 
 /**
  * Created by Administrator on 2016/11/24.

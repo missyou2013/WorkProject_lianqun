@@ -132,6 +132,7 @@ public class LoginActivity extends BaseActivity {
             case R.id.ac_login_forgot_pwd:
                 if (SharedPreferencesUtils.getLoadingStatement(this)) {
                     startActivity(new Intent(this, ForgotPasswordActivity.class));
+                    finish();
                 }
                 break;
             case R.id.ac_login_btn_login:
