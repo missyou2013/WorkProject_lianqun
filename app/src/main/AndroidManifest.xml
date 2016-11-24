@@ -34,11 +34,22 @@
 
         <activity
             android:name=".activity.HomeActivity"
-            android:launchMode="singleTask"></activity>
-
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.LoginActivity"
-            android:label="登录"></activity>
+            android:label="登录"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:label="修改密码" />
+        <activity
+            android:name=".activity.MyActivity"
+            android:label="我的" />
+
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="关于我们" />
+
 
         <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
@@ -68,14 +79,21 @@
             </intent-filter>
         </service>
 
+<<<<<<< HEAD
 
         <!-- 考勤界面-->
+=======
+        <!-- 考勤界面 -->
+>>>>>>> eb79dce94cbf84147b4bf9ad1b67c3564720cd84
         <activity android:name=".activity.KaoQinActivity" />
-        <!-- 考勤查看全部界面-->
+        <!-- 考勤查看全部界面 -->
         <activity android:name=".activity.KaoQinDetailsActivity" />
+<<<<<<< HEAD
         <!--申请-->
         <activity android:name=".activity.ApplyActivity" />
 
+=======
+>>>>>>> eb79dce94cbf84147b4bf9ad1b67c3564720cd84
     </application>
 
 </manifest>

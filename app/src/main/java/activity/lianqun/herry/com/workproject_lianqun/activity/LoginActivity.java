@@ -1,7 +1,9 @@
 package activity.lianqun.herry.com.workproject_lianqun.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -24,22 +26,33 @@ import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
+import net.tsz.afinal.http.AjaxParams;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import activity.lianqun.herry.com.workproject_lianqun.R;
 import activity.lianqun.herry.com.workproject_lianqun.adpter.SpinnerAdapter;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
+import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
 import activity.lianqun.herry.com.workproject_lianqun.models.Companys;
+import activity.lianqun.herry.com.workproject_lianqun.models.User;
 import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
 import activity.lianqun.herry.com.workproject_lianqun.utils.JsonUtil;
 import activity.lianqun.herry.com.workproject_lianqun.utils.L;
+import activity.lianqun.herry.com.workproject_lianqun.utils.SharedPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication.companys;
 
 
 /**
@@ -72,13 +85,15 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.ac_login_parent)
     LinearLayout acLoginParent;
 
-    private List<Companys> companys = new ArrayList<Companys>();
-    private List<String> data_list;
+    //    private List<Companys> companys = new ArrayList<Companys>();
+    List<String> data_list = CustomApplication.data_list;
     private ArrayAdapter<String> arr_adapter;
 
 
     private SpinnerAdapter spinnerAdapter;
     private String Current_id = "";//当前选中的企业的id
+
+    private User user;
 
     @Override
     protected void setUpContentView() {
@@ -100,11 +115,11 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
-        if (CommonUtils.isOnline(this)) {
-            getdata_company_list();
-        } else {
-            Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
-        }
+//        if (CommonUtils.isOnline(this)) {
+//            getdata_company_list();
+//        } else {
+//            Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
+//        }
     }
 
     @OnClick({R.id.toolbar_title, R.id.toolbar, R.id.ac_login_forgot_pwd, R.id.ac_login_btn_login})
@@ -115,8 +130,10 @@ public class LoginActivity extends BaseActivity {
             case R.id.toolbar:
                 break;
             case R.id.ac_login_forgot_pwd:
-                getdata_xiugai_mima("30","123456","123456");
-
+                if (SharedPreferencesUtils.getLoadingStatement(this)) {
+                    startActivity(new Intent(this, ForgotPasswordActivity.class));
+                    finish();
+                }
                 break;
             case R.id.ac_login_btn_login:
                 String name = acLoginUsernameEdit.getText().toString().trim();
@@ -124,8 +141,9 @@ public class LoginActivity extends BaseActivity {
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(pwd)) {
                     if (CommonUtils.isOnline(this)) {
                         if (!"".equals(Current_id)) {
+//                            getfriend_Data(name, pwd);
                             getdata_login(name, pwd);
-                        }else{
+                        } else {
                             Toast.makeText(this, getText(R.string.ac_login_spinner_txt), Toast.LENGTH_LONG).show();
                         }
                     } else {
@@ -139,7 +157,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     //登录
-    void getdata_login(String uname, String pwd) {
+    private void getdata_login(String uname, String pwd) {
         OkHttpUtils
                 .post()
                 .url(LOGIN_URL)
@@ -148,83 +166,92 @@ public class LoginActivity extends BaseActivity {
                 .addParams("companyid", Current_id)
                 .build()
                 .execute(new StringCallback() {
+
+                    @Override
+                    public void onBefore(Request request) {
+                        CommonUtils.showLoadingDialog(LoginActivity.this);
+                    }
+
                     @Override
                     public void onError(Request request, Exception e) {
                         L.d("登录response====" + e.getMessage());
+                        CommonUtils.hideLoadingDialog(LoginActivity.this);
                     }
 
                     @Override
                     public void onResponse(String response) {
                         L.d("登录response====" + response);
-//                    SharedPreferencesUtils.setUID(LoginActivity.this, String.valueOf(Users.get(0).getCompanys().get(0).getId()));
-//                                        SharedPreferencesUtils.setUserNickName(LoginActivity.this, Users.get(0).getCompanys().get(0).getName());
-                    }
-                });
-    }
-    //修改密码 userid,oldpassword,newpassword
-    void getdata_xiugai_mima(String userid, String oldpwd,String newpwd) {
-        OkHttpUtils
-                .post()
-                .url(XIUGAI_MIMA)
-                .addParams("userid", userid)
-                .addParams("oldpassword", oldpwd)
-                .addParams("newpassword", newpwd)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        L.d("修改密码response====" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        L.d("修改密码response====" + response);
-//                    SharedPreferencesUtils.setUID(LoginActivity.this, String.valueOf(Users.get(0).getCompanys().get(0).getId()));
-//                                        SharedPreferencesUtils.setUserNickName(LoginActivity.this, Users.get(0).getCompanys().get(0).getName());
-                    }
-                });
-    }
-    //获取公司列表
-    void getdata_company_list() {
-        OkHttpUtils
-                .get()
-                .url(COMPANY_LISTS)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        L.d("公司列表response====" + response);
                         if (!TextUtils.isEmpty(response)) {
                             try {
                                 JSONObject object = new JSONObject(response);
                                 String result = object.optString("result");
                                 if ("true".equals(result)) {
-                                    String c = object.optString("companys");
+                                    String c = object.optString("user");
                                     if (!TextUtils.isEmpty(c) && !c.equals("[]")) {
-
-
-                                        companys = JsonUtil.stringToArray(
-                                                object.optString("companys"),
-                                                Companys[].class);
-                                        data_list = new ArrayList<String>();
-                                        for (int i = 0; i < companys.size(); i++) {
-                                            data_list.add(i, String.valueOf(companys.get(i).getName()));
-                                        }
+                                        user = JsonUtil.fromJson(c, User.class);
+                                        SharedPreferencesUtils.setUID(LoginActivity.this, String.valueOf(user.getId()));
+                                        SharedPreferencesUtils.setUserNickName(LoginActivity.this, user.getName());
+                                        SharedPreferencesUtils.setUserInfor(LoginActivity.this, user);
+                                        SharedPreferencesUtils.setLoadingStatement(LoginActivity.this, true);
+                                        SharedPreferencesUtils.setCompanyId(LoginActivity.this, Current_id);
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                        finish();
                                     }
+                                } else {
+                                    Toast.makeText(LoginActivity.this, getText(R.string.ac_login_fail), Toast.LENGTH_LONG).show();
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
+
+                        CommonUtils.hideLoadingDialog(LoginActivity.this);
                     }
                 });
     }
+
+
+//    //获取公司列表
+//    private  void getdata_company_list() {
+//        OkHttpUtils
+//                .get()
+//                .url(COMPANY_LISTS)
+//                .build()
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onError(Request request, Exception e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String response) {
+//                        L.d("公司列表response====" + response);
+//                        if (!TextUtils.isEmpty(response)) {
+//                            try {
+//                                JSONObject object = new JSONObject(response);
+//                                String result = object.optString("result");
+//                                if ("true".equals(result)) {
+//                                    String c = object.optString("companys");
+//                                    if (!TextUtils.isEmpty(c) && !c.equals("[]")) {
+//
+//
+//                                        companys = JsonUtil.stringToArray(
+//                                                object.optString("companys"),
+//                                                Companys[].class);
+//                                        data_list = new ArrayList<String>();
+//                                        for (int i = 0; i < companys.size(); i++) {
+//                                            data_list.add(i, String.valueOf(companys.get(i).getName()));
+//                                        }
+//                                    }
+//                                }
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//                });
+//    }
 
 
     @OnClick(R.id.ac_login_tv_spinner)
@@ -252,7 +279,7 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     acLoginTvSpinner.setText(data_list.get(position));
-                    Current_id = String.valueOf(companys.get(position).getName());
+                    Current_id = String.valueOf(companys.get(position).getId());
                     if (popupWindow != null) {
                         popupWindow.dismiss();
                     }
@@ -287,4 +314,44 @@ public class LoginActivity extends BaseActivity {
 //        popupWindow.showAsDropDown(view);
 
     }
+
+
+    // 登录
+    private void getfriend_Data(String uname, String pwd) {
+//        http://192.168.1.102:8888/waiqin/client/manager/login?loginname=zhangsan&companyid=14&password=123456
+        AjaxParams params = new AjaxParams();
+        params.put("loginname", uname);
+        params.put("password", pwd);
+        params.put("companyid", "14");
+
+        FinalHttp fh = new FinalHttp();
+        String url = FinalHttp.getUrlWithQueryString(LOGIN_URL, params);
+        L.d("===login===url===" + url);
+
+        fh.post(LOGIN_URL, params, new AjaxCallBack<String>() {
+
+            @Override
+            public void onSuccess(String t) {
+                // 数据请求成功
+                String result = t;
+                L.d("===login===url===" + t);
+//                CommonUtils.hideLoadingDialog(LinliQaunActivity.this);
+            }
+
+            @Override
+            public void onStart() {
+                // 开始http请求的时候回调
+//                CommonUtils.showLoadingDialog(LinliQaunActivity.this, "加载中...");
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                L.d("===获取社区下话题===url===" + strMsg);
+                // 加载失败的时候回调
+//                CommonUtils.hideLoadingDialog(LinliQaunActivity.this);
+            }
+        });
+    }
+
+
 }

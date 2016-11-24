@@ -17,6 +17,7 @@
     <dimen name="textSize20sp">20sp</dimen>
     <dimen name="height50dp">50dp</dimen>
     <dimen name="kaoqin150dp">150dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 
 </resources>

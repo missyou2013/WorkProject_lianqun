@@ -9,6 +9,7 @@ import activity.lianqun.herry.com.workproject_lianqun.R;
 import activity.lianqun.herry.com.workproject_lianqun.constants.ConstantValues;
 import activity.lianqun.herry.com.workproject_lianqun.core.AppStatusTracker;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
+import activity.lianqun.herry.com.workproject_lianqun.utils.SharedPreferencesUtils;
 
 /**
  * Created by Administrator on 2016/11/16.
@@ -34,7 +35,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void setUpData(Bundle savedInstanceState) {
-        handler.sendEmptyMessageDelayed(0, 2000);
+        handler.sendEmptyMessageDelayed(0, 3500);
 
     }
 
@@ -42,8 +43,18 @@ public class WelcomeActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+<<<<<<< HEAD
  startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
             //startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+=======
+//            startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
+
+            if (SharedPreferencesUtils.getLoadingStatement(WelcomeActivity.this)) {
+                startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
+            }else{
+                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+            }
+>>>>>>> eb79dce94cbf84147b4bf9ad1b67c3564720cd84
             finish();
         }
     };

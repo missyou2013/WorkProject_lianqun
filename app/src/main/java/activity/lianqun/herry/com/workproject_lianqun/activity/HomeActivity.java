@@ -87,6 +87,7 @@ public class HomeActivity extends BaseActivity {
             case R.id.relativeLayout_ad:
                 break;
             case R.id.relativeLayout_my:
+                intent.setClass(HomeActivity.this, MyActivity.class);
                 break;
         }
         startActivity(intent);

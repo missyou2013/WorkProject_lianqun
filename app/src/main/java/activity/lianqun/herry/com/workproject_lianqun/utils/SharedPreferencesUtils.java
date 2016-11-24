@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import activity.lianqun.herry.com.workproject_lianqun.models.User;
+
 
 public class SharedPreferencesUtils {
 
@@ -232,10 +234,10 @@ public class SharedPreferencesUtils {
      * @param
      * @param
      */
-    public static void setUserToken(Activity activity, String token) {// 写入XML数据
+    public static void setCompanyId(Activity activity, String CompanyId) {// 写入XML数据
         SharedPreferences settings = activity.getSharedPreferences(SharedPreferencesName, 0);
         Editor editor = settings.edit();
-        editor.putString("userToken", token);
+        editor.putString("userToken", CompanyId);
         editor.commit(); // �?��要记得提�?
     }
 
@@ -247,7 +249,7 @@ public class SharedPreferencesUtils {
      * @return
      */
 
-    public static String getUserToken(Context context) {
+    public static String getCompanyId(Context context) {
         SharedPreferences settings = context.getSharedPreferences(SharedPreferencesName, 0);
         String flag = settings.getString("userToken", null);
         return flag;
@@ -546,61 +548,48 @@ public class SharedPreferencesUtils {
         return gender;
     }
 
-//	/**
-//	 * 保存用户信息
-//	 *
-//	 * @return
-//	 */
-//	public static void setUserModelInfor(Activity activity, UserModel model) {
-//		SharedPreferences settings = activity.getSharedPreferences(SharedPreferencesName, 0);
-//		Editor editor = settings.edit();
-//		editor.putString("user_communityId", DESUtil.encrypt(model.getCommunityId()));
-//		editor.putString("user_status", DESUtil.encrypt(model.getStatus()));
-//		editor.putString("user_id", DESUtil.encrypt(model.getId()));
-//		editor.putString("user_passportid", DESUtil.encrypt(model.getPassportid()));
-//		editor.putString("user_pid", DESUtil.encrypt(model.getPid()));
-//		editor.putString("user_truename", DESUtil.encrypt(model.getTruename()));
-//		editor.putString("user_address", DESUtil.encrypt(model.getAddress()));
-//		editor.putString("user_linktel", DESUtil.encrypt(model.getLinktel()));
-//		editor.putString("user_idtype", DESUtil.encrypt(model.getIdtype()));
-//		editor.putString("user_idno", DESUtil.encrypt(model.getIdno()));
-//		editor.putString("user_birthday", DESUtil.encrypt(model.getBirthday()));
-//		editor.putString("user_photo", DESUtil.encrypt(model.getPhoto()));
-//		editor.putString("user_type", DESUtil.encrypt(model.getType()));
-//		editor.putString("user_workstatus", DESUtil.encrypt(model.getWorkstatus()));
-//		editor.putString("user_sex", DESUtil.encrypt(model.getSex()));
-//		editor.putString("user_remark", DESUtil.encrypt(model.getRemark()));
-//		editor.putString("user_grade", DESUtil.encrypt(model.getGrade()));
-//		editor.commit();
-//	}
-//
-//	/**
-//	 * 获取用户信息
-//	 *
-//	 * @param activity
-//	 */
-//	public static UserModel getUserModelInfor(Context activity) {
-//		UserModel bean = new UserModel();
-//		SharedPreferences settings = activity.getSharedPreferences(SharedPreferencesName, 0);
-//		bean.setCommunityId(DESUtil.decrypt(settings.getString("user_communityId", "")));
-//		bean.setStatus(DESUtil.decrypt(settings.getString("user_status", "")));
-//		bean.setId(DESUtil.decrypt(settings.getString("user_id", "")));
-//		bean.setPassportid(DESUtil.decrypt(settings.getString("user_passportid", "")));
-//		bean.setPid(DESUtil.decrypt(settings.getString("user_pid", "")));
-//		bean.setTruename(DESUtil.decrypt(settings.getString("user_truename", "")));
-//		bean.setAddress(DESUtil.decrypt(settings.getString("user_address", "")));
-//		bean.setLinktel(DESUtil.decrypt(settings.getString("user_linktel", "")));
-//		bean.setIdtype(DESUtil.decrypt(settings.getString("user_idtype", "")));
-//		bean.setIdno(DESUtil.decrypt(settings.getString("user_idno", "")));
-//		bean.setBirthday(DESUtil.decrypt(settings.getString("user_birthday", "")));
-//		bean.setPhoto(DESUtil.decrypt(settings.getString("user_photo", "")));
-//		bean.setType(DESUtil.decrypt(settings.getString("user_type", "")));
-//		bean.setWorkstatus(DESUtil.decrypt(settings.getString("user_workstatus", "")));
-//		bean.setSex(DESUtil.decrypt(settings.getString("user_sex", "")));
-//		bean.setRemark(DESUtil.decrypt(settings.getString("user_remark", "")));
-//		bean.setGrade(DESUtil.decrypt(settings.getString("user_grade", "")));
-//		return bean;
-//	}
+	/**
+	 * 保存用户信息
+	 *
+	 * @return
+	 */
+	public static void setUserInfor(Activity activity, User model) {
+		SharedPreferences settings = activity.getSharedPreferences(SharedPreferencesName, 0);
+		Editor editor = settings.edit();
+		editor.putString("user_id", DESUtil.encrypt(String.valueOf(model.getId())));
+		editor.putString("user_name", DESUtil.encrypt(model.getName()));
+		editor.putString("user_cname", DESUtil.encrypt(model.getCname()));
+        editor.putString("user_sex", DESUtil.encrypt(String.valueOf(model.getSex())));
+        editor.putString("user_phone", DESUtil.encrypt(model.getPhone()));
+        editor.putString("user_loginname", DESUtil.encrypt(model.getLoginname()));
+        editor.putString("user_status", DESUtil.encrypt(String.valueOf(model.getStatus())));
+        editor.putString("user_companyid", DESUtil.encrypt(String.valueOf(model.getCompanyid())));
+        editor.putString("user_photo", DESUtil.encrypt(String.valueOf(model.getPhoto())));
+        editor.putString("user_userid", DESUtil.encrypt(String.valueOf(model.getUserid())));
+
+		editor.commit();
+	}
+
+	/**
+	 * 获取用户信息
+	 *
+	 * @param activity
+	 */
+	public static User getUserInfor(Context activity) {
+        User bean = new User();
+		SharedPreferences settings = activity.getSharedPreferences(SharedPreferencesName, 0);
+        bean.setId(Integer.parseInt(DESUtil.decrypt(settings.getString("user_id", ""))));
+        bean.setName(DESUtil.decrypt(settings.getString("user_name", "")));
+        bean.setCname(DESUtil.decrypt(settings.getString("user_cname", "")));
+        bean.setSex(Integer.parseInt(DESUtil.decrypt(settings.getString("user_sex", ""))));
+        bean.setPhone(DESUtil.decrypt(settings.getString("user_phone", "")));
+        bean.setLoginname(DESUtil.decrypt(settings.getString("user_loginname", "")));
+        bean.setStatus(Integer.parseInt(DESUtil.decrypt(settings.getString("user_status", ""))));
+        bean.setCompanyid(Integer.parseInt(DESUtil.decrypt(settings.getString("user_companyid", ""))));
+        bean.setPhoto(DESUtil.decrypt(settings.getString("user_photo", "")));
+        bean.setUserid(Integer.parseInt(DESUtil.decrypt(settings.getString("user_userid", ""))));
+		return bean;
+	}
 
     /**
      * 获取Authorization

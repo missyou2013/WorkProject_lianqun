@@ -30,6 +30,8 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import activity.lianqun.herry.com.workproject_lianqun.R;
+
 /**
  * @ClassName: CommonUtils
  * @Description: 工具�?
@@ -784,5 +786,33 @@ public class CommonUtils {
 //		dialog.setCancelable(false);
 //		dialog.show();
 //	}
+	/**
+	 * 显示加载框
+	 *
+	 * @param context
+	 * @param msg
+	 */
+	private static CustomDialog loadingDialog=null;
 
+	public static void showLoadingDialog(Context context) {
+		loadingDialog = new CustomDialog(context, R.style.CustomDialog);
+		loadingDialog.show();
+	}
+
+	/**
+	 * 隐藏加载框
+	 *
+	 * @param context
+	 * @param
+	 */
+	public static void hideLoadingDialog(Context context) {
+		try {
+			if (loadingDialog != null || loadingDialog.isShowing()) {
+				loadingDialog.dismiss();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
