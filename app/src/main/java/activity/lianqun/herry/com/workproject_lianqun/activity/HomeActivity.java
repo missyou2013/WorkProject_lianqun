@@ -72,13 +72,15 @@ public class HomeActivity extends BaseActivity {
 
     @OnClick({R.id.relativeLayout_kaoQin, R.id.relativeLayout_shenQing, R.id.relativeLayout_trace, R.id.relativeLayout_ad, R.id.relativeLayout_my})
     public void onClick(View view) {
-         Intent intent = new Intent();
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.relativeLayout_kaoQin:
-               intent.setClass(HomeActivity.this, KaoQinActivity.class);
+                intent.setClass(HomeActivity.this, KaoQinActivity.class);
 
                 break;
             case R.id.relativeLayout_shenQing:
+                intent.setClass(HomeActivity.this, ApplyActivity.class);
+
                 break;
             case R.id.relativeLayout_trace:
                 break;

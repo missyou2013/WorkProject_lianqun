@@ -50,5 +50,6 @@
     <string name="ac_login_error_net_txt">网络异常，请检查您的网络</string>
 
     <string name="activity_kaoqin">考勤</string>
+    <string name="activity_apply">申请</string>
 
 </resources>

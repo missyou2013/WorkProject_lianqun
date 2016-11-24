@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/widget_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="请假申请" />
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="报销申请" />
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="其他" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:drawableRight="@mipmap/arrow_right"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingRight="@dimen/margin_20"
+                android:text="请假类型"
+                android:textColor="@color/gray_shallow"
+                android:textSize="@dimen/textSize16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/apply_flag1"
+                    android:layout_alignLeft="@+id/apply_flag1"
+                    android:layout_marginBottom="5dp"
+                    android:text="开始时间"
+
+                    android:textColor="@color/gray_shallow"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <TextView
+                    android:id="@+id/apply_flag1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginStart="16dp" />
+
+                <TextView
+                    android:id="@+id/apply_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/apply_flag1"
+                    android:layout_below="@+id/apply_flag1"
+                    android:layout_marginTop="5dp"
+                    android:text="2016-11-20 周二 8:30"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:background="@mipmap/arrow_right" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:background="@color/gray_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/apply_flag2"
+                    android:layout_alignLeft="@+id/apply_flag2"
+                    android:layout_marginBottom="5dp"
+                    android:text="结束时间"
+                    android:textColor="@color/gray_shallow"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <TextView
+                    android:id="@+id/apply_flag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginStart="16dp" />
+
+                <TextView
+                    android:id="@+id/apply_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/apply_flag2"
+                    android:layout_below="@+id/apply_flag2"
+                    android:layout_marginTop="5dp"
+                    android:text="2016-11-20 周二 8:30"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:background="@mipmap/arrow_right" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/et_apply_cause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="填写请假理由"
+                    android:padding="20dp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
