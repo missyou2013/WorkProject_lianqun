@@ -3,10 +3,14 @@ package activity.lianqun.herry.com.workproject_lianqun.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.squareup.okhttp.Request;
 import com.youth.banner.Banner;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +72,11 @@ public class HomeActivity extends BaseActivity {
 
     @OnClick({R.id.relativeLayout_kaoQin, R.id.relativeLayout_shenQing, R.id.relativeLayout_trace, R.id.relativeLayout_ad, R.id.relativeLayout_my})
     public void onClick(View view) {
-        Intent intent = new Intent();
+         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.relativeLayout_kaoQin:
-                intent.setClass(HomeActivity.this, KaoQinActivity.class);
+               intent.setClass(HomeActivity.this, KaoQinActivity.class);
+
                 break;
             case R.id.relativeLayout_shenQing:
                 break;
@@ -82,8 +87,7 @@ public class HomeActivity extends BaseActivity {
             case R.id.relativeLayout_my:
                 break;
         }
-
-            startActivity(intent);
+        startActivity(intent);
 
     }
 }

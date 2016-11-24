@@ -11,11 +11,12 @@
     <dimen name="textSize15sp">15sp</dimen>
     <dimen name="textSize16sp">16sp</dimen>
     <dimen name="marginRight10dp">10dp</dimen>
-    <dimen name="kaoqin200dp">200dp</dimen>
     <dimen name="marginLeft10dp">10dp</dimen>
     <dimen name="textSize45sp">45sp</dimen>
     <dimen name="textSize30sp">30sp</dimen>
     <dimen name="textSize20sp">20sp</dimen>
+    <dimen name="height50dp">50dp</dimen>
+    <dimen name="kaoqin150dp">150dp</dimen>
 
 
 </resources>

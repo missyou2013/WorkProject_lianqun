@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height50dp"
+    android:background="@color/white"
+
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:id="@+id/kaoqin_date"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableRight="@mipmap/line_ver"
+        android:drawableTop="@mipmap/line_hor"
+        android:gravity="center"
+        android:text="11/16 三"
+
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/textSize16sp" />
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableRight="@mipmap/line_ver"
+        android:drawableTop="@mipmap/line_hor"
+        android:gravity="center"
+        android:text="08:45-17:03"
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/textSize16sp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableRight="@mipmap/line_ver"
+        android:drawableTop="@mipmap/line_hor"
+        android:gravity="center"
+        android:text="迟到15分钟"
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/textSize16sp" />
+
+</LinearLayout>
