@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/ac_login_parent"
     android:orientation="vertical">
     <!-- 登录-->
     <include layout="@layout/widget_toolbar" />
@@ -28,11 +28,13 @@
 
                 <TextView
                     android:id="@+id/ac_login_tv_spinner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:gravity="center_vertical"
                     android:hint="@string/ac_login_spinner_txt"
-                    android:text="@string/ac_login_spinner_txt" />
+                    android:text="@string/ac_login_spinner_txt"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:textSize="18sp" />
 
                 <Spinner
                     android:id="@+id/ac_login_spinner"
@@ -52,7 +54,9 @@
 
                 android:layout_marginTop="10dp"
                 android:hint="@string/ac_login_username_txt"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:text="zhangsan" />
 
             <EditText
                 android:id="@+id/ac_login_pwd_edit"
@@ -60,7 +64,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/ac_login_pwd_txt"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text="123456" />
 
             <TextView
                 android:id="@+id/ac_login_forgot_pwd"

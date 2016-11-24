@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.adpter.SpinnerAdapter;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
 import activity.lianqun.herry.com.workproject_lianqun.models.Companys;
 import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
@@ -66,10 +69,16 @@ public class LoginActivity extends BaseActivity {
     Button acLoginBtnLogin;
     @BindView(R.id.ac_login_tv_spinner)
     TextView acLoginTvSpinner;
+    @BindView(R.id.ac_login_parent)
+    LinearLayout acLoginParent;
 
     private List<Companys> companys = new ArrayList<Companys>();
     private List<String> data_list;
     private ArrayAdapter<String> arr_adapter;
+
+
+    private SpinnerAdapter spinnerAdapter;
+    private String Current_id = "";//当前选中的企业的id
 
     @Override
     protected void setUpContentView() {
@@ -91,25 +100,8 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
-
-
         if (CommonUtils.isOnline(this)) {
             getdata_company_list();
-
-
-//            acLoginSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                    Toast.makeText(LoginActivity.this, "11111111111", Toast.LENGTH_LONG).show();
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//
-//                }
-//            });
-
-
         } else {
             Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
         }
@@ -123,34 +115,75 @@ public class LoginActivity extends BaseActivity {
             case R.id.toolbar:
                 break;
             case R.id.ac_login_forgot_pwd:
+                getdata_xiugai_mima("30","123456","123456");
+
                 break;
             case R.id.ac_login_btn_login:
+                String name = acLoginUsernameEdit.getText().toString().trim();
+                String pwd = acLoginPwdEdit.getText().toString().trim();
+                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(pwd)) {
+                    if (CommonUtils.isOnline(this)) {
+                        if (!"".equals(Current_id)) {
+                            getdata_login(name, pwd);
+                        }else{
+                            Toast.makeText(this, getText(R.string.ac_login_spinner_txt), Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(this, getText(R.string.ac_login_error_promit_txt), Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
 
     //登录
-    void getdata_login() {
+    void getdata_login(String uname, String pwd) {
         OkHttpUtils
                 .post()
                 .url(LOGIN_URL)
-                .addParams("loginname", "hyman")
-                .addParams("password", "123")
-                .addParams("companyid", "123")
+                .addParams("loginname", uname)
+                .addParams("password", pwd)
+                .addParams("companyid", Current_id)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-
+                        L.d("登录response====" + e.getMessage());
                     }
 
                     @Override
                     public void onResponse(String response) {
                         L.d("登录response====" + response);
+//                    SharedPreferencesUtils.setUID(LoginActivity.this, String.valueOf(Users.get(0).getCompanys().get(0).getId()));
+//                                        SharedPreferencesUtils.setUserNickName(LoginActivity.this, Users.get(0).getCompanys().get(0).getName());
                     }
                 });
     }
+    //修改密码 userid,oldpassword,newpassword
+    void getdata_xiugai_mima(String userid, String oldpwd,String newpwd) {
+        OkHttpUtils
+                .post()
+                .url(XIUGAI_MIMA)
+                .addParams("userid", userid)
+                .addParams("oldpassword", oldpwd)
+                .addParams("newpassword", newpwd)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        L.d("修改密码response====" + e.getMessage());
+                    }
 
+                    @Override
+                    public void onResponse(String response) {
+                        L.d("修改密码response====" + response);
+//                    SharedPreferencesUtils.setUID(LoginActivity.this, String.valueOf(Users.get(0).getCompanys().get(0).getId()));
+//                                        SharedPreferencesUtils.setUserNickName(LoginActivity.this, Users.get(0).getCompanys().get(0).getName());
+                    }
+                });
+    }
     //获取公司列表
     void getdata_company_list() {
         OkHttpUtils
@@ -182,20 +215,6 @@ public class LoginActivity extends BaseActivity {
                                         for (int i = 0; i < companys.size(); i++) {
                                             data_list.add(i, String.valueOf(companys.get(i).getName()));
                                         }
-
-//                                        acLoginSpinner.attachDataSource(data_list);
-
-
-//                                        //适配器
-//                                        arr_adapter = new ArrayAdapter<String>(LoginActivity.this, R.layout.spinner_item, R.id.spinner_item_tv, data_list);
-//                                        //设置样式
-//                                        arr_adapter.setDropDownViewResource(R.layout.spinner_item);
-//                                        //加载适配器
-//                                        acLoginSpinner.setAdapter(arr_adapter);
-//                                        acLoginSpinner.setText(companys.get(0).getName());
-//                                        SharedPreferencesUtils.setUID(LoginActivity.this, String.valueOf(Users.get(0).getCompanys().get(0).getId()));
-//                                        SharedPreferencesUtils.setUserNickName(LoginActivity.this, Users.get(0).getCompanys().get(0).getName());
-
                                     }
                                 }
 
@@ -210,8 +229,10 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.ac_login_tv_spinner)
     public void onClick() {
-        showPopupWindow(acLoginTvSpinner);
+        showPopupWindow(acLoginParent);
     }
+
+    PopupWindow popupWindow;
 
     private void showPopupWindow(View view) {
 
@@ -223,13 +244,25 @@ public class LoginActivity extends BaseActivity {
         // 设置按钮的点击事件
         ListView lv = (ListView) contentView.findViewById(R.id.spinner_listview);
 
+        if (data_list.size() > 0) {
+
+            spinnerAdapter = new SpinnerAdapter(this, data_list);
+            lv.setAdapter(spinnerAdapter);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    acLoginTvSpinner.setText(data_list.get(position));
+                    Current_id = String.valueOf(companys.get(position).getName());
+                    if (popupWindow != null) {
+                        popupWindow.dismiss();
+                    }
+                }
+            });
+        }
 
 
-
-
-
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                (2 * CommonUtils.getScreenWidth(LoginActivity.this)) / 3, (1 * CommonUtils.getScreenHeight(LoginActivity.this)) / 3, true);
+        popupWindow = new PopupWindow(contentView,
+                LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
 
@@ -250,7 +283,8 @@ public class LoginActivity extends BaseActivity {
 //                R.drawable.selectmenu_bg_downward));
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         // 设置好参数之后再show
-        popupWindow.showAsDropDown(view);
+        popupWindow.showAtLocation(acLoginParent, Gravity.CENTER, 0, 0);
+//        popupWindow.showAsDropDown(view);
 
     }
 }
