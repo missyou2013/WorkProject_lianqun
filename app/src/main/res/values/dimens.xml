@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="three_grid_unit">24dp</dimen>
+    <dimen name="one_and_a_half_grid_unit">12dp</dimen>
+
     <dimen name="home_relativeLayout">80dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="textSize15sp">15sp</dimen>
@@ -14,5 +17,6 @@
     <dimen name="textSize20sp">20sp</dimen>
     <dimen name="height50dp">50dp</dimen>
     <dimen name="kaoqin150dp">150dp</dimen>
+
 
 </resources>

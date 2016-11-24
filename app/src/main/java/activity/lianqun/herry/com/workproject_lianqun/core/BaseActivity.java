@@ -13,6 +13,7 @@ import android.widget.TextView;
 import activity.lianqun.herry.com.workproject_lianqun.R;
 import activity.lianqun.herry.com.workproject_lianqun.activity.HomeActivity;
 import activity.lianqun.herry.com.workproject_lianqun.constants.ConstantValues;
+import activity.lianqun.herry.com.workproject_lianqun.utils.ApiConfig;
 import activity.lianqun.herry.com.workproject_lianqun.utils.L;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,7 +22,7 @@ import butterknife.Unbinder;
  * Created by Administrator on 2016/11/16.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener ,ApiConfig {
     protected Toolbar toolbar;
     protected TextView toolbar_title;
     public static final int MODE_BACK = 0;

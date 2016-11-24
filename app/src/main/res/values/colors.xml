@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
 
-    <color name="app_primary_color">#80c3db</color>
+    <color name="app_primary_color">#9bdaf0</color>
     <color name="app_primary_dark_color">#45b9de</color>
     <color name="app_transparent">#00000000</color>
     <color name="white">#FFFFFF</color>
@@ -15,9 +15,15 @@
     <color name="tab_green">#ff45c01a</color>
     <color name="widgets_general_tab_pressed">#0db35e</color>
     <color name="widgets_general_tab_normal">#aaa</color>
+
+
+
+    <color name="light_gray">#fff5f5f5</color>
+
     <color name="home_background">#F3F2F8</color>
     <color name="gray_dark">#1C1C1C</color>
     <color name="gray_shallow">#A5A5A5</color>
     <color name="gray_line">#D2D2D2</color>
     <color name="blue_dark">#414C5F</color>
+
 </resources>
