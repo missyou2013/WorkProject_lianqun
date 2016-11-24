@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
@@ -15,10 +16,24 @@ import com.baidu.trace.LBSTraceClient;
 import com.baidu.trace.LocationMode;
 import com.baidu.trace.Trace;
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.models.Companys;
+import activity.lianqun.herry.com.workproject_lianqun.utils.ApiConfig;
+import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
+import activity.lianqun.herry.com.workproject_lianqun.utils.JsonUtil;
+import activity.lianqun.herry.com.workproject_lianqun.utils.L;
 
 
 /**
@@ -59,6 +74,8 @@ public class CustomApplication extends Application {
 
     private TrackHandler mHandler = null;
 
+    public static List<Companys> companys = new ArrayList<Companys>();
+    public  static List<String> data_list;
 
     @Override
     public void onCreate() {
@@ -87,7 +104,11 @@ public class CustomApplication extends Application {
         client.setReadTimeout(10000L, TimeUnit.MILLISECONDS);
 
 
-
+        if (CommonUtils.isOnline(this)) {
+            getdata_company_list();
+        } else {
+            Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -142,4 +163,45 @@ public class CustomApplication extends Application {
     public BaiduMap getmBaiduMap() {
         return mBaiduMap;
     }
+
+    //获取公司列表
+    private  void getdata_company_list() {
+        OkHttpUtils
+                .get()
+                .url(ApiConfig.COMPANY_LISTS)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        L.d("公司列表response====" + response);
+                        if (!TextUtils.isEmpty(response)) {
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                String result = object.optString("result");
+                                if ("true".equals(result)) {
+                                    String c = object.optString("companys");
+                                    if (!TextUtils.isEmpty(c) && !c.equals("[]")) {
+                                        companys = JsonUtil.stringToArray(
+                                                object.optString("companys"),
+                                                Companys[].class);
+                                        data_list = new ArrayList<String>();
+                                        for (int i = 0; i < companys.size(); i++) {
+                                            data_list.add(i, String.valueOf(companys.get(i).getName()));
+                                        }
+                                    }
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+    }
+
 }

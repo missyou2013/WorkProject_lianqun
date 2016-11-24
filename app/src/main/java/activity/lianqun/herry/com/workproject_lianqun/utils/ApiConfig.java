@@ -35,6 +35,6 @@ public interface ApiConfig {
     String COMPANY_LISTS = BASE_URL + "manager/selectcompany";
 
     //修改密码
-    String XIUGAI_MIMA = BASE_URL + "client/manager/updatepass";
+    String XIUGAI_MIMA = BASE_URL + "/manager/updatepass";
 
 }

@@ -38,7 +38,13 @@
 
         <activity
             android:name=".activity.LoginActivity"
-            android:label="登录"></activity>
+            android:label="登录"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+
+        <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:label="修改密码"></activity>
+
 
         <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
@@ -67,7 +73,6 @@
                 <action android:name="com.service.PollingService" />
             </intent-filter>
         </service>
-
 
 
         <!-- 考勤界面-->

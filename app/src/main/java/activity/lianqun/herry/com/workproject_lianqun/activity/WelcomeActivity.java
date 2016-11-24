@@ -34,7 +34,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void setUpData(Bundle savedInstanceState) {
-        handler.sendEmptyMessageDelayed(0, 2000);
+        handler.sendEmptyMessageDelayed(0, 3500);
 
     }
 
