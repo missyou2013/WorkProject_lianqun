@@ -3,19 +3,37 @@ package activity.lianqun.herry.com.workproject_lianqun.activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.Request;
 import com.yanzhenjie.album.Album;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
+import com.zhy.http.okhttp.callback.StringCallback;
 
+import net.tsz.afinal.core.AsyncTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import activity.lianqun.herry.com.workproject_lianqun.R;
 import activity.lianqun.herry.com.workproject_lianqun.adpter.GridAdapter;
@@ -23,15 +41,19 @@ import activity.lianqun.herry.com.workproject_lianqun.adpter.MyGridLayoutManager
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
 import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
 import activity.lianqun.herry.com.workproject_lianqun.utils.DisplayUtils;
+import activity.lianqun.herry.com.workproject_lianqun.utils.HttpPostUploadUtil2;
+import activity.lianqun.herry.com.workproject_lianqun.utils.L;
+import activity.lianqun.herry.com.workproject_lianqun.utils.SharedPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.toolsfinal.coder.RSACoder;
 
 /**
  * Created by Administrator on 2016/11/24.
  */
 
-public class ApplyActivity extends BaseActivity {
+public class ApplyActivity extends BaseActivity implements View.OnClickListener {
     //choose picture
     private static final int ACTIVITY_REQUEST_SELECT_PHOTO = 100;
     @BindView(R.id.picture_chose)
@@ -42,11 +64,16 @@ public class ApplyActivity extends BaseActivity {
     TextView applyStartTime;
     @BindView(R.id.apply_end_time)
     TextView applyEndTime;
+
+    @BindView(R.id.et_apply_cause)
+    EditText et_reason;
     private RecyclerView mRecyclerView;
     private GridAdapter mGridAdapter;
-    private List<String> pathList;
+    private List<String> pathList = new ArrayList<>();
     private String[] type_qingjia = {"病假", "事假", "年假", "婚假", "产假", "其他"};
     private String[] type_baoxiao = {"车费", "话费", "餐补", "差旅费", "其他"};
+
+    private Button btn_appy;
 
     @Override
     protected void setUpContentView() {
@@ -56,7 +83,8 @@ public class ApplyActivity extends BaseActivity {
 
     @Override
     protected void setUpView() {
-
+        btn_appy = (Button) findViewById(R.id.btn_apply);
+        btn_appy.setOnClickListener(this);
     }
 
     @Override
@@ -186,7 +214,44 @@ public class ApplyActivity extends BaseActivity {
             case R.id.apply_end_time:
                 CommonUtils.showDialog(ApplyActivity.this, applyStartTime);
                 break;
+            case R.id.btn_apply:
+                Toast.makeText(getApplicationContext(), "1111", Toast.LENGTH_LONG).show();
+                new ImagePostUpload().execute("1");
+
+                break;
         }
+    }
+
+    private void apply() {
+
+//        List<File> mListfile = new ArrayList<File>();
+//        mListfile.add(new File(Environment.getExternalStorageDirectory() + "/BigNoxHD/cache/", "ulucu_CloudLens.png"));
+//        mListfile.add(new File(Environment.getExternalStorageDirectory() + "/BigNoxHD/cache/", "com_demo.png"));
+//        PostFormBuilder postFormBuilder = OkHttpUtils.post();
+//        Map<String, String> params = new HashMap<>();
+//        params.put("type", "1");
+//        params.put("category", "1");
+//        params.put("userid", SharedPreferencesUtils.getUID(ApplyActivity.this));
+//        params.put("reson", et_reason.getText().toString());
+//        params.put("update", "2016 10-20");
+//        params.put("downdate", "2016 11-20");
+//        for (int i = 0; i < 2; i++) {
+//            postFormBuilder.addFile("pics", "", mListfile.get(i));
+//        }
+//        L.e("url    " + APPLY);
+//        postFormBuilder.params(params).url(APPLY).build().execute(new StringCallback() {
+//            @Override
+//            public void onError(Request request, Exception e) {
+//                //  CommonUtils.hideLoadingDialog(ApplyActivity.this);
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                L.e("response:  " + response);
+//            }
+//        });
+
+
     }
 
     private void actionSheet(String[] type) {
@@ -208,4 +273,79 @@ public class ApplyActivity extends BaseActivity {
                 })
                 .show();
     }
+
+    class ImagePostUpload extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+            CommonUtils.showLoadingDialog(ApplyActivity.this);
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            // TODO Auto-generated method stub
+            L.d("===arg0[0]===" + arg0[0]);
+            Map<String, String> textMap = new HashMap<String, String>();
+
+            textMap.put("type", "1");
+
+            textMap.put("category", "1");
+            // try {
+            // textMap.put("content", URLEncoder.encode(arg0[0], "UTF-8"));
+            // } catch (UnsupportedEncodingException e) {
+            // // TODO Auto-generated catch block
+            // e.printStackTrace();
+            // }
+            textMap.put(
+                    "userid", SharedPreferencesUtils.getUID(ApplyActivity.this)
+            );
+            textMap.put("reson", et_reason.getText().toString());
+            textMap.put("update", "2016 10-20");
+            textMap.put("downdate", "2016 10-20");
+
+            Map<String, List<String>> fileMap = new HashMap<String, List<String>>();
+            List<String> list = new ArrayList<String>();
+            if (pathList.size() > 0) {
+                // String imgs[] = new String[Bimp.tempSelectBitmap.size()];
+                for (int i = 0; i < pathList.size(); i++) {
+                    list.add(pathList.get(i));
+                    // imgs[i] = Bimp.tempSelectBitmap.get(i).imagePath;
+                }
+                fileMap.put("files", list);
+            } else {
+                fileMap.put("files", null);
+            }
+            // String ret = formUpload(urlStr, textMap, fileMap);
+
+            String result = HttpPostUploadUtil2.formUpload(APPLY,
+                    textMap, fileMap);
+            L.d("申请===上传图片===" + result);
+            String img_result = "1";
+            try {
+                JSONObject object = new JSONObject(result);
+
+                if (object.has("result")) {
+                    String r = object.optString("result");
+                    if ("true".equals(r)) {
+
+                    } else if (object.has("code")) {
+                    }
+                }
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return img_result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // TODO Auto-generated method stub
+            CommonUtils.hideLoadingDialog(ApplyActivity.this);
+
+        }
+    }
+
 }

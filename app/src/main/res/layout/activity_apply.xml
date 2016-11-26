@@ -19,39 +19,65 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
 
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/ac_home_ll_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/ac_home_tv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/qingjia" />
+        </LinearLayout>
 
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="请假申请" />
+        <LinearLayout
+            android:id="@+id/ac_home_ll_my"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+             >
 
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="报销申请" />
+            <TextView
+                android:id="@+id/ac_home_tv_my"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baoxiao" />
+        </LinearLayout>
 
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="其他" />
+        <LinearLayout
+            android:id="@+id/ac_home_ll_service"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-            </RadioGroup>
+            <TextView
+                android:id="@+id/ac_home_tv_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/qita" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
             <TextView
                 android:id="@+id/apply_type"
@@ -208,6 +234,7 @@
             </RelativeLayout>
 
             <Button
+                android:id="@+id/btn_apply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
