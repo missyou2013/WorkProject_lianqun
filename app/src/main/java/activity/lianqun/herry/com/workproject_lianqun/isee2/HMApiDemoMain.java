@@ -45,6 +45,9 @@ public class HMApiDemoMain extends Activity {
 		CustomApplication.getJni().init();
 	}
 
+
+
+
 	private void onListItemClick(int index) {
 		Intent intent = null;
 		intent = new Intent(HMApiDemoMain.this, demos[index].demoClass);
