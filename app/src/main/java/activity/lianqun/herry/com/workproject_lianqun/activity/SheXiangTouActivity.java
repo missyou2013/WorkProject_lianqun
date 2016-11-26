@@ -28,6 +28,7 @@ import activity.lianqun.herry.com.workproject_lianqun.R;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
 import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
 import activity.lianqun.herry.com.workproject_lianqun.isee.DeviceActivity;
+import activity.lianqun.herry.com.workproject_lianqun.isee.LoginDemo;
 import activity.lianqun.herry.com.workproject_lianqun.isee2.HMApiDemoMain;
 import activity.lianqun.herry.com.workproject_lianqun.models.ContentSheXiangtou;
 import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
@@ -102,17 +103,19 @@ public class SheXiangTouActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
-//        getdata_shexiangtou("1", "100");
+        CustomApplication.getJni().init();
 
-        Intent i = new Intent(this, HMApiDemoMain.class);
-        startActivity(i);
+        getdata_shexiangtou("1", "100");
 
-
+        registerHander();
+        shipin();
     }
 
     @OnClick(R.id.ac_shexiangtou_btn)
     public void onClick() {
-
+//        Intent i = new Intent(this, HMApiDemoMain.class);
+        Intent i = new Intent(this, LoginDemo.class);
+        startActivity(i);
     }
 
     //摄像头列表 传cid  pagenum  pagesize
@@ -326,8 +329,13 @@ public class SheXiangTouActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-        registerHander();
-        shipin();
-    }
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        CustomApplication.getJni().uninit();
+        System.exit(0);
+    }
 }

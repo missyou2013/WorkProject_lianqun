@@ -57,7 +57,7 @@
     <string name="ac_forgot_fail">修改密码失败</string>
     <string name="ac_again_login">修改成功，请重新登录</string>
     <string name="loading">加载中......</string>
-    <string name="ac_my">我</string>
+    <string name="ac_my">我扽</string>
     <string name="system_set">系统设置</string>
     <string name="about_us">关于我们</string>
     <string name="exit">退出登陆</string>
@@ -98,5 +98,8 @@
 
     <string name="demo_title_lansearch">局域网搜索---LanSearchDemo</string>
     <string name="demo_lansearch">实现局域网搜索功能</string>
+
+
+    <string name="she_xiang_tou_list">摄像头列表</string>
 
 </resources>

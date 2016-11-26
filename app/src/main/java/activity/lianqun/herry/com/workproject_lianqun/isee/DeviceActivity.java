@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.huamaitel.api.HMDefines;
 import com.huamaitel.api.HMDefines.ChannelInfo;
@@ -22,10 +23,11 @@ import java.util.List;
 import java.util.Map;
 
 import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
 import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
 import activity.lianqun.herry.com.workproject_lianqun.utils.L;
 
-public class DeviceActivity extends Activity {
+public class DeviceActivity extends BaseActivity {
     private static final String TAG = "tag";
     private List<Map<String, Object>> mListData;
     private int mVideoStream = HMDefines.CodeStream.SEC_STREAM;
@@ -34,9 +36,24 @@ public class DeviceActivity extends Activity {
     private ArrayList<String> list_devices = new ArrayList<String>();
 
     @Override
+    protected void setUpContentView() {
+        setContentView(R.layout.device_activity, R.string.she_xiang_tou_list);
+    }
+
+    @Override
+    protected void setUpView() {
+
+    }
+
+    @Override
+    protected void setUpData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.device_activity);
+//        setContentView(R.layout.device_activity);
         list_devices = getIntent().getStringArrayListExtra("list_device");
         L.d("传过来的=" + list_devices.toString());
         gridView = (GridView) findViewById(R.id.id_device_list);
@@ -93,8 +110,8 @@ public class DeviceActivity extends Activity {
                 }
 
             });
-        }else{
-
+        } else {
+            Toast.makeText(this, "没有摄像头", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -165,11 +182,11 @@ public class DeviceActivity extends Activity {
                 obj.put("id", childrenNode);
                 obj.put("name", sdk.getNodeName(childrenNode));
                 Log.d(TAG, " sdk.getDeviceSn(childrenNode): " + sdk.getDeviceSn(childrenNode));
-//                if (list_devices.contains(sdk.getDeviceSn(childrenNode))) {
+                if (list_devices.contains(sdk.getDeviceSn(childrenNode))) {
                     mListData.add(obj);
-//                } else {
-////					UtilsLog.d("不包含在内的=" + sdk.getDeviceSn(childrenNode));
-//                }
+                } else {
+//					UtilsLog.d("不包含在内的=" + sdk.getDeviceSn(childrenNode));
+                }
 
             }
         }
