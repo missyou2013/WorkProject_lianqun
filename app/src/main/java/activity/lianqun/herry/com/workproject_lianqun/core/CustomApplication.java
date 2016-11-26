@@ -1,5 +1,6 @@
 package activity.lianqun.herry.com.workproject_lianqun.core;
 
+import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
 import android.content.Context;
@@ -15,8 +16,12 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.trace.LBSTraceClient;
 import com.baidu.trace.LocationMode;
 import com.baidu.trace.Trace;
+import com.huamaitel.api.HMDefines;
+import com.huamaitel.api.HMJniInterface;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.wuxiaolong.androidutils.library.ActivityManagerUtil;
+import com.wuxiaolong.androidutils.library.CrashHandlerUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -75,7 +80,47 @@ public class CustomApplication extends Application {
     private TrackHandler mHandler = null;
 
     public static List<Companys> companys = new ArrayList<Companys>();
-    public  static List<String> data_list;
+    public static List<String> data_list;
+
+
+    //she--xiang--tou
+    public static int mUserId = 0;
+    public static int mVideoHandle = 0;
+    public static int mAudioHandle = 0;
+    public static int mTalkHandle = 0;
+    public static int mAlarmHandle = 0;
+    public static int mRecordHandle = 0;
+    public static byte[] mCapputureHandle = null;
+
+    public static int mLanSearchHandle = 0;
+
+    public static HMDefines.DeviceInfo mDeviceInfo = null;
+    public static HMDefines.ChannelCapacity mChannelCapacity[] = null;
+    public static int serverId = 0;
+    public static int treeId = 0;
+    public static int userId = 0;
+    public static int curNodeHandle = 0;
+    public static int curNodeChannel;
+    public static HMDefines.DeviceInfo deviceInfo = null;
+    public static List<Integer> rootList;
+    private static HMJniInterface jni = null;
+    public String mRecordPath = ""; // The path of video record file.
+    public static String mCapturePath = ""; // The path of captured picture
+    // file.
+    public static String mLoginServerError = ""; // The error message of login
+    // sever.
+    public static boolean mIsUserLogin = true; // Is IsUserLogin from intent
+
+    public static final String NODE_ID = "nodeId";
+    public static final String CHANNEL = "channel";
+    public static final String VIDEO_STREAM = "video_stream";
+
+    public static HMJniInterface getJni() {
+        if (null == jni) {
+            jni = new HMJniInterface();
+        }
+        return jni;
+    }
 
     @Override
     public void onCreate() {
@@ -83,7 +128,11 @@ public class CustomApplication extends Application {
         AppStatusTracker.init(this);
 
         mContext = getApplicationContext();
-
+        rootList = new ArrayList<Integer>();
+//        //崩溃处理
+//        CrashHandlerUtil crashHandlerUtil = CrashHandlerUtil.getInstance();
+//        crashHandlerUtil.init(this);
+//        crashHandlerUtil.setCrashTip("很抱歉，程序出现异常，即将退出！");
 
         /**
          * 鹰眼
@@ -107,7 +156,8 @@ public class CustomApplication extends Application {
         if (CommonUtils.isOnline(this)) {
             getdata_company_list();
         } else {
-            Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG)
+                    .show();
         }
 
     }
@@ -165,7 +215,7 @@ public class CustomApplication extends Application {
     }
 
     //获取公司列表
-    private  void getdata_company_list() {
+    private void getdata_company_list() {
         OkHttpUtils
                 .get()
                 .url(ApiConfig.COMPANY_LISTS)
@@ -191,7 +241,8 @@ public class CustomApplication extends Application {
                                                 Companys[].class);
                                         data_list = new ArrayList<String>();
                                         for (int i = 0; i < companys.size(); i++) {
-                                            data_list.add(i, String.valueOf(companys.get(i).getName()));
+                                            data_list.add(i, String.valueOf(companys.get(i)
+                                                    .getName()));
                                         }
                                     }
                                 }

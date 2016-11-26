@@ -83,6 +83,8 @@ public class HomeActivity extends BaseActivity {
             case R.id.relativeLayout_trace:
                 break;
             case R.id.relativeLayout_ad:
+                intent.setClass(HomeActivity.this, SheXiangTouActivity.class);
+
                 break;
             case R.id.relativeLayout_my:
                 intent.setClass(HomeActivity.this, MyActivity.class);

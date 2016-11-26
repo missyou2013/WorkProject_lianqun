@@ -1,5 +1,6 @@
 package activity.lianqun.herry.com.workproject_lianqun.core;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+
+import com.wuxiaolong.androidutils.library.ActivityManagerUtil;
 
 import activity.lianqun.herry.com.workproject_lianqun.R;
 import activity.lianqun.herry.com.workproject_lianqun.activity.HomeActivity;
@@ -30,7 +33,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
     public static final int MODE_NONE = 2;
     public static final int MODE_HOME = 3;
 
-
+    public ActivityManagerUtil activityManagerUtil;
+    public Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
                 setUpData(savedInstanceState);
                 break;
         }
+        mActivity = this;
+        activityManagerUtil = ActivityManagerUtil.getInstance();
+        activityManagerUtil.pushOneActivity(this);
     }
 
     protected abstract void setUpContentView();
@@ -155,5 +162,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
             L.d("need to show gesture");
         }
         super.onStart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //结束Activity&从栈中移除该Activity
+        activityManagerUtil.popOneActivity(this);
     }
 }

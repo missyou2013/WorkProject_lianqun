@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WorkProject_lianqun</string>
+    <string name="app_name">企管通</string>
     <string name="activity_home">企管通</string>
     <string name="other_activity">其他界面</string>
     <string name="login_activity">登录</string>
@@ -62,8 +62,41 @@
     <string name="about_us">关于我们</string>
     <string name="exit">退出登陆</string>
     <string name="exit_msg">退出成功</string>
+    <string name="err_msg">未查询到相关信息</string>
+
+    <string name="shexiangtou"> 摄像头</string>
+
 
     <string name="activity_kaoqin">考勤</string>
     <string name="title_activity_about_us">AboutUsActivity</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="demo_title_login">互联网观看视频---LoginDemo</string>
+    <string name="demo_login_getDeviceList">适用于有平台管理的多个设备</string>
+    <string name="demo_getDeviceList">设备列表</string>
+
+    <string name="demo_title_openVideo">局域网观看视频---OpenVideoDemo</string>
+    <string name="demo_openVideo">适用于局域网内单个设备</string>
+
+    <string name="demo_title_openAlarm">打开报警---OpenAlarmDemo</string>
+    <string name="demo_openAlarm">开启报警功能</string>
+
+    <string name="demo_title_openTalk">打开对讲---OpenTalkDemo</string>
+    <string name="demo_openTalk">打开对讲功能，实现远程对讲</string>
+
+    <string name="demo_title_openListen">打开声音---OpenListenDemo</string>
+    <string name="demo_openListen">打开声音功能，获取视频声音</string>
+
+    <string name="demo_title_record">打开录像---RecordDemo</string>
+    <string name="demo_record">打开本地录像，实现录像保留功能</string>
+    <string name="record_time">00:00:00</string>
+    <string name="start_record">开始录像</string>
+
+    <string name="demo_title_capture">本地抓图---CaptureDemo</string>
+    <string name="demo_capture">实现录像的截屏拍照功能</string>
+
+    <string name="demo_title_lansearch">局域网搜索---LanSearchDemo</string>
+    <string name="demo_lansearch">实现局域网搜索功能</string>
 
 </resources>
