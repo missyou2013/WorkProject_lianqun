@@ -64,10 +64,13 @@
     <string name="exit_msg">退出成功</string>
 
     <string name="activity_kaoqin">考勤</string>
-<<<<<<< HEAD
+
     <string name="activity_apply">申请</string>
-=======
+
     <string name="title_activity_about_us">AboutUsActivity</string>
->>>>>>> eb79dce94cbf84147b4bf9ad1b67c3564720cd84
+
+    <string name="title_dialog_hint">提示</string>
+    <string name="cancel_select_photo_hint">用户取消了选择照片。</string>
+    <string name="apply_details">申请详情</string>
 
 </resources>

@@ -79,21 +79,27 @@
             </intent-filter>
         </service>
 
-<<<<<<< HEAD
 
         <!-- 考勤界面-->
-=======
+
         <!-- 考勤界面 -->
->>>>>>> eb79dce94cbf84147b4bf9ad1b67c3564720cd84
+
         <activity android:name=".activity.KaoQinActivity" />
         <!-- 考勤查看全部界面 -->
         <activity android:name=".activity.KaoQinDetailsActivity" />
-<<<<<<< HEAD
+
         <!--申请-->
         <activity android:name=".activity.ApplyActivity" />
+        <!-- 相册界面-->
+        <activity
+            android:name="com.yanzhenjie.album.AlbumActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!-- 申请记录-->
+        <activity android:name=".activity.ApplyRecordActivity" />
 
-=======
->>>>>>> eb79dce94cbf84147b4bf9ad1b67c3564720cd84
+        <!-- 申请详情-->
+        <activity android:name=".activity.ApplyDetailsActivity" />
     </application>
 
 </manifest>

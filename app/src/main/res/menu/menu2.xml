@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_about"
+        android:icon="@mipmap/ic_launcher"
         android:orderInCategory="100"
         android:title="about"
         app:showAsAction="always" />

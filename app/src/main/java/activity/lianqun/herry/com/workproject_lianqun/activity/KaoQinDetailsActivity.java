@@ -1,30 +1,29 @@
 package activity.lianqun.herry.com.workproject_lianqun.activity;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 
+import java.util.Calendar;
+
 import activity.lianqun.herry.com.workproject_lianqun.R;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
-import activity.lianqun.herry.com.workproject_lianqun.trackutils.DateDialog;
-import activity.lianqun.herry.com.workproject_lianqun.trackutils.DateUtils;
+import activity.lianqun.herry.com.workproject_lianqun.utils.L;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
 
 
 /**
@@ -34,6 +33,10 @@ import butterknife.OnClick;
 public class KaoQinDetailsActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.time_chose)
     TextView timeChose;
+    @BindView(R.id.time_delete)
+    ImageView timeDelete;
+    @BindView(R.id.time_add)
+    ImageView timeAdd;
     private RecyclerView mRecyclerView;
 
     /**
@@ -61,6 +64,8 @@ public class KaoQinDetailsActivity extends BaseActivity implements SwipeRefreshL
     private int day = 0;
     private int startTime = 0;
     private int endTime = 0;
+    //
+    private String text_year, text_month;
 
     @Override
     protected void setUpContentView() {
@@ -91,58 +96,28 @@ public class KaoQinDetailsActivity extends BaseActivity implements SwipeRefreshL
 
     @OnClick(R.id.time_chose)
     public void onClick() {
-        chooseTime();
+        time_dialog();
     }
 
-    private void chooseTime() {
-        // 选择日期
-        int[] date = null;
-        DisplayMetrics dm = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        if (year == 0 && month == 0 && day == 0) {
-            String curDate = DateUtils.getCurrentDate();
-            date = DateUtils.getYMDArray(curDate, "-");
-        }
-
-        if (date != null) {
-            year = date[0];
-            month = date[1];
-            day = date[2];
-        }
-
-        final DateDialog dateDiolog = new DateDialog(this, new DateDialog.PriorityListener() {
-
-            public void refreshPriorityUI(String sltYear, String sltMonth,
-                                          String sltDay, DateDialog.CallBack back) {
-
-                Log.d("TGA", sltYear + sltMonth + sltDay);
-                year = Integer.parseInt(sltYear);
-                month = Integer.parseInt(sltMonth);
-                day = Integer.parseInt(sltDay);
-                String st = year + "年" + month + "月" + day + "日0时0分0秒";
-                String et = year + "年" + month + "月" + day + "日23时59分59秒";
-                startTime = Integer.parseInt(DateUtils.getTimeToStamp(st));
-                endTime = Integer.parseInt(DateUtils.getTimeToStamp(et));
-
-                back.execute();
-            }
-
-        }, new DateDialog.CallBack() {
-
-            public void execute() {
-
-                timeChose.setText(month + "年" + day + " 月");
-            }
-        }, year, month, day, width, height, "选择日期", 1);
-
-        Window window = dateDiolog.getWindow();
-        window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置
-        dateDiolog.setCancelable(true);
-        dateDiolog.show();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
+
+    @OnClick({R.id.time_delete, R.id.time_add})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.time_delete:
+                // text_month = timeChose.getText().toString().substring(5, timeChose.getText().toString().length());
+
+                break;
+            case R.id.time_add:
+                break;
+        }
+    }
+
 
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
 
@@ -173,5 +148,46 @@ public class KaoQinDetailsActivity extends BaseActivity implements SwipeRefreshL
             }
         }
     }
+
+
+    private void time_dialog() {
+
+        final Calendar objTime = Calendar.getInstance();
+        int iYear = objTime.get(Calendar.YEAR);
+        int iMonth = objTime.get(Calendar.MONTH);
+        int iDay = objTime.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog picker = new DatePickerDialog(KaoQinDetailsActivity.this,
+                DatePickerListener, iYear, iMonth, iDay);
+        picker.setCancelable(true);
+        picker.setCanceledOnTouchOutside(true);
+        picker.setButton(DialogInterface.BUTTON_POSITIVE, "设置",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        picker.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        picker.show();
+
+
+    }
+
+    private DatePickerDialog.OnDateSetListener DatePickerListener = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            timeChose.setText(year + "-" + (monthOfYear + 1));
+        }
+    };
 
 }

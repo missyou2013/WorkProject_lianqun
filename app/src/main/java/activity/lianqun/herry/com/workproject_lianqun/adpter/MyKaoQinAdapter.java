@@ -87,7 +87,7 @@ public class MyKaoQinAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (getItemViewType(position) == TYPE_NORMAL) {
             if (holder instanceof ListHolder) {
                 //这里加载数据的时候要注意，是从position-1开始，因为position==0已经被header占用了
-               // ((ListHolder) holder).tv.setText(mDatas.get(position - 1));
+                // ((ListHolder) holder).tv.setText(mDatas.get(position - 1));
                 return;
             }
             return;

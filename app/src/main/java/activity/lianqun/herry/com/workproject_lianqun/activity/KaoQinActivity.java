@@ -64,6 +64,7 @@ public class KaoQinActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     private void initData() {

@@ -54,4 +54,7 @@ dependencies {
     compile 'com.github.jdsjlzx:LRecyclerView:1.0.8'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.yanzhenjie:album:1.0.0'
+    compile 'com.baoyz.actionsheet:library:1.1.4'
+
 }

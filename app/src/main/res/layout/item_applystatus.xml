@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/white">
+
+
+        <ImageView
+            android:id="@+id/apply_touxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/apply_shijiashenqing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_toRightOf="@+id/apply_touxiang"
+            android:text="事假申请"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/textSize16sp" />
+
+        <TextView
+            android:id="@+id/apply_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/apply_shijiashenqing"
+            android:layout_alignLeft="@+id/apply_shijiashenqing"
+            android:layout_marginBottom="5dp"
+            android:text="孙宁"
+            android:textColor="@color/gray_shallow"
+            android:textSize="@dimen/textSize16sp" />
+
+        <TextView
+            android:id="@+id/apply_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/apply_shijiashenqing"
+            android:layout_below="@+id/apply_shijiashenqing"
+            android:layout_marginTop="5dp"
+            android:text="时间: 11-22 09:00 至  11-22 17:00"
+            android:textSize="@dimen/textSize16sp" />
+
+        <TextView
+            android:id="@+id/wait_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_20"
+            android:text="等待审批"
+            android:textColor="@color/blue_apply"
+            android:textSize="@dimen/textSize16sp" />
+
+        <TextView
+            android:id="@+id/apply_result_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/wait_apply"
+            android:layout_alignRight="@+id/wait_apply"
+            android:layout_marginBottom="5dp"
+            android:text="今天 14：50"
+            android:textColor="@color/gray_shallow"
+            android:textSize="@dimen/textSize16sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>
