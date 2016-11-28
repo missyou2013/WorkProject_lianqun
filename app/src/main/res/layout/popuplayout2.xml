@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/pop_bg"
+    android:orientation="vertical"
+    android:paddingBottom="2dp">
+
+    <TextView
+        android:id="@+id/pop_computer"
+        style="@style/pop_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="编辑" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/list_line" />
+
+    <TextView
+        android:id="@+id/pop_financial"
+        style="@style/pop_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/list_line" />
+
+    <TextView
+        android:id="@+id/pop_manage"
+        style="@style/pop_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="管理"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</LinearLayout>

@@ -43,6 +43,10 @@ public class WelcomeActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+
+ startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
+            //startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+
 //            startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
 
             if (SharedPreferencesUtils.getLoadingStatement(WelcomeActivity.this)) {
@@ -50,6 +54,7 @@ public class WelcomeActivity extends BaseActivity {
             }else{
                 startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
             }
+
             finish();
         }
     };

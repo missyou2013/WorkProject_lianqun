@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/widget_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ac_home_ll_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/ac_home_tv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/qingjia" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ac_home_ll_my"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+             >
+
+            <TextView
+                android:id="@+id/ac_home_tv_my"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baoxiao" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ac_home_ll_service"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/ac_home_tv_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/qita" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/apply_type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:drawableRight="@mipmap/arrow_right"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingRight="@dimen/margin_20"
+                android:text="请假类型"
+                android:textColor="@color/gray_shallow"
+                android:textSize="@dimen/textSize16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/apply_flag1"
+                    android:layout_alignLeft="@+id/apply_flag1"
+                    android:layout_marginBottom="5dp"
+                    android:text="开始时间"
+
+                    android:textColor="@color/gray_shallow"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <TextView
+                    android:id="@+id/apply_flag1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginStart="16dp" />
+
+                <TextView
+                    android:id="@+id/apply_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/apply_flag1"
+                    android:layout_below="@+id/apply_flag1"
+                    android:layout_marginTop="5dp"
+                    android:text="2016-11-20 周二 8:30"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:background="@mipmap/arrow_right" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:background="@color/gray_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/apply_flag2"
+                    android:layout_alignLeft="@+id/apply_flag2"
+                    android:layout_marginBottom="5dp"
+                    android:text="结束时间"
+                    android:textColor="@color/gray_shallow"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <TextView
+                    android:id="@+id/apply_flag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginStart="16dp" />
+
+                <TextView
+                    android:id="@+id/apply_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/apply_flag2"
+                    android:layout_below="@+id/apply_flag2"
+                    android:layout_marginTop="5dp"
+                    android:text="2016-11-20 周二 8:30"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/textSize16sp" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:background="@mipmap/arrow_right" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/et_apply_cause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="填写请假理由"
+                    android:padding="20dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_apply_cause"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="@dimen/margin_20">
+
+                    <ImageView
+                        android:id="@+id/picture_chose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:background="@mipmap/ic_launcher" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/picture_chose"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_apply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/white_btn"
+                android:text="提交申请"
+                android:textColor="@color/gray_shallow"
+                android:textSize="@dimen/textSize16sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -36,9 +36,8 @@ public interface ApiConfig {
     //修改密码
     String XIUGAI_MIMA = BASE_URL + "/manager/updatepass";
 
-    //    检查签到：/client/sign/checksign  传userid   type=1签到2签退
-    //检查签到
-    String CHECK_SIGN = BASE_URL + "/sign/checksign";
+    //申请 请假/报销/其他
+    String APPLY = BASE_URL + "/apply/add";
 
     // 签到-签退
     String QIANDAO_QIANTUI = BASE_URL + "sign/signin";

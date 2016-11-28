@@ -23,11 +23,10 @@
             android:layout_height="60dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:background="@mipmap/user_photo"
+            android:layout_marginLeft="30dp"
+            android:background="@mipmap/ic_launcher"
             app:border_color="@color/no_color"
-            app:border_width="0dp"
-            android:adjustViewBounds="false"/>
+            app:border_width="0dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -72,7 +71,7 @@
             android:layout_centerVertical="true"
 
             android:layout_marginLeft="30dp"
-            android:background="@mipmap/per_set" />
+            android:background="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/ac_my_1_tv"
@@ -111,7 +110,7 @@
             android:layout_centerVertical="true"
 
             android:layout_marginLeft="30dp"
-            android:background="@mipmap/per_password" />
+            android:background="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/ac_my_2_tv"
@@ -151,7 +150,7 @@
             android:layout_centerVertical="true"
 
             android:layout_marginLeft="30dp"
-            android:background="@mipmap/per_about" />
+            android:background="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/ac_my_3_tv"

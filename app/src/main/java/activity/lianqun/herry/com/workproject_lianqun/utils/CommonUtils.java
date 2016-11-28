@@ -1,6 +1,7 @@
 package activity.lianqun.herry.com.workproject_lianqun.utils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,14 +16,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.os.StatFs;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -30,11 +31,11 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import activity.lianqun.herry.com.workproject_lianqun.R;
+import activity.lianqun.herry.com.workproject_lianqun.widgets.pull.ChooseTime.DateTimePickerDialog;
 
 /**
  * @ClassName: CommonUtils
@@ -229,7 +230,7 @@ public class CommonUtils {
      */
     public static boolean isMobileNO(String mobiles) {
         /*
-         * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
+		 * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
 		 * 联通：130、131、132、152、155、156、185、186 电信：133、153、180、189、（1349卫通）
 		 * 总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
 		 */
@@ -813,46 +814,35 @@ public class CommonUtils {
         }
     }
 
-    //获取wifi信息
-    public static HashMap<String, String> getWIFIInfo(Context context) {
-        HashMap<String, String> wifiinfo = new HashMap<String, String>();
-        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo info = wifi.getConnectionInfo();
-        String maxText = info.getMacAddress();
-        String ipText = intToIp(info.getIpAddress());
-        String status = "";
-        if (wifi.getWifiState() == WifiManager.WIFI_STATE_ENABLED) {
-            status = "WIFI_STATE_ENABLED";
-        }
-        String ssid = info.getSSID();
-        int networkID = info.getNetworkId();
-        int speed = info.getLinkSpeed();
+    /**
+     * 时间选择框
+     */
+    public static void showDialog(final Activity activity,
+                                  final TextView textView) {
+        DateTimePickerDialog dialog = new DateTimePickerDialog(activity,
+                System.currentTimeMillis());
+        dialog.setOnDateTimeSetListener(new DateTimePickerDialog.OnDateTimeSetListener() {
+            public void OnDateTimeSet(AlertDialog dialog, long date) {
+                Toast.makeText(activity, "您输入的日期是：" + getStringDate(date),
+                        Toast.LENGTH_LONG).show();
 
-        wifiinfo.put("mac", maxText);
-        wifiinfo.put("ip", ipText.substring(1,ipText.length()-1));
-        wifiinfo.put("ssid", ssid.substring(1,ssid.length()-1));
-        wifiinfo.put("net_work_id", String.valueOf(networkID));
+                String date_string = String.valueOf(getStringDate(date));
 
-        String msg = "mac：" + maxText + "\n\r"
-                + "ip：" + ipText + "\n\r"
-                + "wifi status :" + status + "\n\r"
-                + "ssid :" + ssid + "\n\r"
-                + "net work id :" + networkID + "\n\r"
-                + "connection speed:" + speed + "\n\r";
-        Log.d("tag", "wifi-infor==" + msg);
-//        return "mac：" + maxText + "\n\r"
-//                + "ip：" + ipText + "\n\r"
-//                + "wifi status :" + status + "\n\r"
-//                + "ssid :" + ssid + "\n\r"
-//                + "net work id :" + networkID + "\n\r"
-//                + "connection speed:" + speed + "\n\r"
-//                ;
-        return wifiinfo;
+                textView.setText(date_string);
+
+
+            }
+        });
+        dialog.show();
     }
 
-    public static String intToIp(int ip) {
-        return (ip & 0xFF) + "." + ((ip >> 8) & 0xFF) + "." + ((ip >> 16) & 0xFF) + "."
-                + ((ip >> 24) & 0xFF);
+    /**
+     * 将长时间格式字符串转换为时间 yyyy-MM-dd HH:mm:ss
+     */
+    public static String getStringDate(Long date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(date);
+
+        return dateString;
     }
 }
-

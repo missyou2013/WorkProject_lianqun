@@ -57,7 +57,7 @@
     <string name="ac_forgot_fail">修改密码失败</string>
     <string name="ac_again_login">修改成功，请重新登录</string>
     <string name="loading">加载中......</string>
-    <string name="ac_my">我扽</string>
+    <string name="ac_my">我</string>
     <string name="system_set">系统设置</string>
     <string name="about_us">关于我们</string>
     <string name="exit">退出登陆</string>
@@ -68,7 +68,14 @@
 
 
     <string name="activity_kaoqin">考勤</string>
+
+    <string name="activity_apply">申请</string>
+
     <string name="title_activity_about_us">AboutUsActivity</string>
+
+    <string name="title_dialog_hint">提示</string>
+    <string name="cancel_select_photo_hint">用户取消了选择照片。</string>
+    <string name="apply_details">申请详情</string>
 
 
     <string name="action_settings">Settings</string>

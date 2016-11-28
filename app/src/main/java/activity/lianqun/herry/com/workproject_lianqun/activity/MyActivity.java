@@ -131,7 +131,6 @@ public class MyActivity extends BaseActivity {
                         //execute the task
                         CommonUtils.hideLoadingDialog(MyActivity.this);
                         SharedPreferencesUtils.setLoadingStatement(MyActivity.this, false);
-                        SharedPreferencesUtils.clear(MyActivity.this);
                         Toast.makeText(MyActivity.this, getText(R.string.exit_msg), Toast.LENGTH_LONG).show();
                     }
                 }, 2000);

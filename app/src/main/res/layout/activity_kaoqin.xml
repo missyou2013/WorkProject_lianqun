@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/home_background"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background"
+    android:orientation="vertical">
     <!-- 考勤界面-->
 
-    <include layout="@layout/widget_toolbar"/>
+    <include layout="@layout/widget_toolbar" />
 
     <ScrollView
         android:id="@+id/ScrollView_kaoqin"
@@ -33,20 +33,20 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/marginLeft10dp"/>
+                    android:layout_marginLeft="@dimen/marginLeft10dp" />
 
                 <TextView
-                    android:id="@+id/ac_kaoqin_date_week"
+                    android:id="@+id/date_week"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/kaoqin_flag"
                     android:layout_alignLeft="@+id/kaoqin_flag"
                     android:text="星期一"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/ac_kaoqin_date_Hms"
+                    android:id="@+id/date_Hms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/kaoqin_flag"
@@ -54,7 +54,7 @@
                     android:layout_marginTop="10dp"
                     android:text="2016年11月21日"
                     android:textColor="@color/white"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@mipmap/ic_launcher"/>
+                    android:background="@mipmap/ic_launcher" />
 
                 <TextView
 
@@ -78,7 +78,7 @@
                     android:layout_height="0dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/im_qiandao"/>
+                    android:layout_toRightOf="@+id/im_qiandao" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,23 +103,23 @@
                     android:layout_centerVertical="true"
                     android:text="9:00"
                     android:textColor="@color/gray_shallow"
-                    android:textSize="@dimen/textSize16sp"/>
+                    android:textSize="@dimen/textSize16sp" />
 
                 <Button
                     android:id="@+id/btn_qiandao"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/marginRight10dp"
                     android:background="@mipmap/orange_btn"
                     android:gravity="center"
-                    android:text="签 到"
+                    android:text="签 退"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16sp"/>
+                    android:textSize="@dimen/textSize16sp"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/ac_kq_tv_qiandao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -127,8 +127,7 @@
                     android:layout_marginRight="@dimen/marginRight10dp"
                     android:text="已签到 08:50"
                     android:textColor="@color/gray_shallow"
-                    android:textSize="@dimen/textSize16sp"
-                    android:visibility="gone"/>
+                    android:textSize="@dimen/textSize16sp" />
 
 
             </RelativeLayout>
@@ -138,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
                 android:layout_marginLeft="@dimen/margin_20"
-                android:background="@color/gray_line"/>
+                android:background="@color/gray_line" />
 
             <RelativeLayout
 
@@ -152,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@mipmap/ic_launcher"/>
+                    android:background="@mipmap/ic_launcher" />
 
                 <TextView
 
@@ -161,8 +160,7 @@
                     android:layout_height="0dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-
-                    android:layout_toRightOf="@+id/im_qiantui"/>
+                    android:layout_toRightOf="@+id/im_qiantui" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -187,7 +185,7 @@
                     android:layout_centerVertical="true"
                     android:text="9:00"
                     android:textColor="@color/gray_shallow"
-                    android:textSize="@dimen/textSize16sp"/>
+                    android:textSize="@dimen/textSize16sp" />
 
                 <Button
                     android:id="@+id/btn_qiantui"
@@ -200,19 +198,7 @@
                     android:gravity="center"
                     android:text="签 退"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16sp"/>
-
-                <TextView
-                    android:id="@+id/ac_kq_tv_qiantui"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/marginRight10dp"
-                    android:text="已签退 08:50"
-                    android:textColor="@color/gray_shallow"
-                    android:textSize="@dimen/textSize16sp"
-                    android:visibility="gone"/>
+                    android:textSize="@dimen/textSize16sp" />
             </RelativeLayout>
 
             <TextView
@@ -221,45 +207,22 @@
                 android:layout_margin="20dp"
                 android:text="考勤记录"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/textSize16sp"/>
+                android:textSize="@dimen/textSize16sp" />
 
-
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/height50dp"
-                    android:layout_centerInParent="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="2016年11月"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/textSize16sp"/>
-
-                <TextView
-                    android:id="@+id/ac_kaoqin_more"
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="@dimen/height50dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="更多"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/textSize16sp"/>
-
-            </RelativeLayout>
-
+                android:layout_height="@dimen/height50dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="2016年11月"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/textSize16sp" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/margin_20"
-                android:background="@color/gray_line"/>
+                android:background="@color/gray_line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -275,7 +238,7 @@
                     android:gravity="center"
                     android:text="日期"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/textSize16sp"/>
+                    android:textSize="@dimen/textSize16sp" />
 
 
                 <TextView
@@ -286,7 +249,7 @@
                     android:gravity="center"
                     android:text="打卡时间"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/textSize16sp"/>
+                    android:textSize="@dimen/textSize16sp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -295,7 +258,7 @@
                     android:gravity="center"
                     android:text="备注"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/textSize16sp"/>
+                    android:textSize="@dimen/textSize16sp" />
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView

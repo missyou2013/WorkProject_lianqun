@@ -41,8 +41,8 @@ public class OtherActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         //  mRecyclerView.setLayoutManager(new MyLinearLayoutManager(this));
         initData();
-//        adapter = new MyKaoQinAdapter(mList);
-//        mRecyclerView.setAdapter(adapter);
+        adapter = new MyKaoQinAdapter(mList);
+        mRecyclerView.setAdapter(adapter);
 
     }
     //初始化RecyclerView中每个item的数据
