@@ -18,6 +18,9 @@ import activity.lianqun.herry.com.workproject_lianqun.adpter.MyKaoQinAdapter;
 import activity.lianqun.herry.com.workproject_lianqun.adpter.MyLinearLayoutManager;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
 
+
+
+
 /**
  * Created by Administrator on 2016/11/23.
  */

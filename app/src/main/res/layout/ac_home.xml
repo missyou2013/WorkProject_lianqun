@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@mipmap/ic_launcher" />
+                    android:background="@mipmap/ico" />
 
                 <TextView
 
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@mipmap/ic_launcher" />
+                    android:background="@mipmap/ico_01" />
 
                 <TextView
 
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@mipmap/ic_launcher" />
+                    android:background="@mipmap/ico_02" />
 
                 <TextView
 
@@ -233,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@mipmap/ic_launcher" />
+                    android:background="@mipmap/ico_03" />
 
                 <TextView
 
@@ -290,12 +290,13 @@
                 android:background="@color/white">
 
                 <ImageView
+
                     android:id="@+id/imageView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@mipmap/ic_launcher" />
+                    android:background="@mipmap/ico_04" />
 
                 <TextView
 
@@ -313,13 +314,14 @@
                     android:layout_alignLeft="@+id/flag5"
                     android:layout_alignTop="@+id/imageView5"
                     android:text="我的"
+                    android:id="@+id/ac_home_my_5"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/textSize15sp"
 
                     />
 
                 <TextView
-
+                    android:id="@+id/ac_home_my_5_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/flag5"

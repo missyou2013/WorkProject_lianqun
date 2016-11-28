@@ -1,19 +1,30 @@
 package activity.lianqun.herry.com.workproject_lianqun.activity;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.huamaitel.api.HMDefines;
 import com.squareup.okhttp.Request;
 import com.youth.banner.Banner;
 import com.ypy.eventbus.EventBus;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +34,6 @@ import activity.lianqun.herry.com.workproject_lianqun.adpter.GlideImageLoader;
 import activity.lianqun.herry.com.workproject_lianqun.core.BaseActivity;
 import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
 import activity.lianqun.herry.com.workproject_lianqun.isee.DeviceActivity;
-import activity.lianqun.herry.com.workproject_lianqun.isee.LoginDemo;
 import activity.lianqun.herry.com.workproject_lianqun.models.ContentSheXiangtou;
 import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
 import activity.lianqun.herry.com.workproject_lianqun.utils.FirstEvent;
@@ -46,9 +56,43 @@ public class HomeActivity extends BaseActivity {
     RelativeLayout relativeLayoutAd;
     @BindView(R.id.relativeLayout_my)
     RelativeLayout relativeLayoutMy;
+
+    @BindView(R.id.imageView5)
+    ImageView iv_5;
+    @BindView(R.id.ac_home_my_5)
+    TextView tv_1;
+    @BindView(R.id.ac_home_my_5_2)
+    TextView tv_2;
     private Banner banner;
     private List<String> list_images = new ArrayList<>();
+    int role_status;
 
+
+    //~~~~~~~~~~~~~~~
+    List<ContentSheXiangtou> contentSheXiangtouList = new ArrayList<ContentSheXiangtou>();
+    private ArrayList<String> list_devices = new ArrayList<String>();
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+    private static final String TAG = "tag";
+    private static final int EVENT_CONNECT_SUCCESS = 1;
+    private static final int EVENT_CONNECT_FAIL = 2;
+    private static final int EVENT_LOGIN_SUCCESS = 3;
+    private static final int EVENT_LOGIN_FAIL = 4;
+
+    // private static final String SERVER_ADDR = "home.see1000.com";
+    // private static final String SERVER_ADDR
+    // ="qdyidu.com";//"rvs.dev.huamaitel.com"; //"www.seeyun.cn";
+
+    private static final String SERVER_ADDR = "isee.qdyibu.com";
+
+    // private static final String SERVER_ADDR = "www.seebaobei.com";
+    // private static final String SERVER_ADDR = "yn118960.com";
+
+    private static final short SERVER_PORT = 80;
+    private ProgressDialog loginProcessDialog;
+    private Handler handler;
+    private Thread mServerThread = null;
+    private HMDefines.LoginServerInfo info = null;
 
     @Override
     protected void setUpContentView() {
@@ -63,7 +107,9 @@ public class HomeActivity extends BaseActivity {
     protected void setUpView() {
 
         list_images.add("http://img2.3lian.com/2014/c7/12/d/77.jpg");
-        list_images.add("http://pic3.bbzhi.com/fengjingbizhi/gaoqingkuanpingfengguangsheyingps/show_fengjingta_281299_11.jpg");
+        list_images.add("http://pic3.bbzhi" +
+                ".com/fengjingbizhi/gaoqingkuanpingfengguangsheyingps/show_fengjingta_281299_11" +
+                ".jpg");
         banner = (Banner) findViewById(R.id.home_banner);
         banner.setImages(list_images).setImageLoader(new GlideImageLoader()).start();
 
@@ -116,29 +162,36 @@ public class HomeActivity extends BaseActivity {
 
 
 
-    @OnClick({R.id.relativeLayout_kaoQin, R.id.relativeLayout_shenQing, R.id.relativeLayout_trace, R.id.relativeLayout_ad, R.id.relativeLayout_my})
+    @OnClick({R.id.relativeLayout_kaoQin, R.id.relativeLayout_shenQing, R.id
+            .relativeLayout_trace, R.id.relativeLayout_ad, R.id.relativeLayout_my})
     public void onClick(View view) {
-        Intent intent = new Intent();
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.relativeLayout_kaoQin:
+                intent = new Intent();
                 intent.setClass(HomeActivity.this, KaoQinActivity.class);
-
                 break;
             case R.id.relativeLayout_shenQing:
-                intent.setClass(HomeActivity.this, ApplyActivity.class);
-
                 break;
             case R.id.relativeLayout_trace:
                 break;
             case R.id.relativeLayout_ad:
                 intent = new Intent();
-                intent.setClass(HomeActivity.this, TongZhiActivity.class);
+                intent.setClass(HomeActivity.this, HomeActivity.class);
                 break;
             case R.id.relativeLayout_my:
-                intent.setClass(HomeActivity.this, MyActivity.class);
+                if (!"我的".equals(tv_1.getText().toString().trim())) {
+                    //1  is  Adminstartor
+//                    intent.setClass(HomeActivity.this, LoginDemo.class);
+                    registerHander();
+                    shipin();
+                } else {
+                    //2  is  user
+                    intent = new Intent();
+                    intent.setClass(HomeActivity.this, MyActivity.class);
+                }
                 break;
         }
-        startActivity(intent);
         if (intent != null) {
             startActivity(intent);
         }

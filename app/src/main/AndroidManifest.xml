@@ -46,9 +46,26 @@
             android:name=".activity.MyActivity"
             android:label="我的" />
 
+
+
+
         <activity
             android:name=".activity.AboutUsActivity"
-            android:label="关于我们" />
+            android:label="关于我们"/>
+        <activity
+            android:name=".activity.SheXiangTouActivity"
+            android:label="摄像头"/>
+
+        <activity
+            android:name="activity.lianqun.herry.com.workproject_lianqun.isee.LoginDemo"
+            android:label="摄像头登录"/>
+        <activity
+            android:name="activity.lianqun.herry.com.workproject_lianqun.isee.PlayActivity"
+            android:label="摄像头播放"/>
+        <activity
+            android:name="activity.lianqun.herry.com.workproject_lianqun.isee.DeviceActivity"
+            android:label="摄像头列表"/>
+
 
 
         <activity android:name=".activity.WelcomeActivity">
