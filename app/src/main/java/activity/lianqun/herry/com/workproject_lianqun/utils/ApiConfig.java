@@ -49,5 +49,11 @@ public interface ApiConfig {
 
     // 摄像头/camera/query      传cid  pagenum  pagesize
 
-    String SHEXIANGTOU = BASE_URL + "camera/query ";
+    String SHEXIANGTOU = BASE_URL + "camera/query";
+
+    //通知列表 传userid,cid,pagenum,pagesize
+    String TONGZHI_LIST = BASE_URL + "note/query";
+
+    //通知详情 传id
+    String TONGZHI_DETAILS = BASE_URL + "note/info";
 }

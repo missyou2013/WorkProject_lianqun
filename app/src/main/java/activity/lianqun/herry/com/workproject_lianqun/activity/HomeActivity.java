@@ -9,6 +9,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.huamaitel.api.HMDefines;
 import com.squareup.okhttp.Request;
 import com.youth.banner.Banner;
+import com.ypy.eventbus.EventBus;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -35,6 +37,7 @@ import activity.lianqun.herry.com.workproject_lianqun.isee.DeviceActivity;
 import activity.lianqun.herry.com.workproject_lianqun.isee.LoginDemo;
 import activity.lianqun.herry.com.workproject_lianqun.models.ContentSheXiangtou;
 import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
+import activity.lianqun.herry.com.workproject_lianqun.utils.FirstEvent;
 import activity.lianqun.herry.com.workproject_lianqun.utils.JsonUtil;
 import activity.lianqun.herry.com.workproject_lianqun.utils.L;
 import activity.lianqun.herry.com.workproject_lianqun.utils.SharedPreferencesUtils;
@@ -95,6 +98,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void setUpContentView() {
         setContentView(R.layout.ac_home, R.string.activity_home, MODE_HOME);
+
         ButterKnife.bind(HomeActivity.this);
 
     }
@@ -121,8 +125,10 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
+        EventBus.getDefault().register(this);
 
         role_status = SharedPreferencesUtils.getUserInfor(this).getStatus();
+        L.d("role_status==="+role_status);
         if (role_status == 1) {
             //1  is  Adminstartor
             tv_1.setText("摄像头");
@@ -137,6 +143,24 @@ public class HomeActivity extends BaseActivity {
         getdata_shexiangtou("1", "100");
 
     }
+    public void onEventMainThread(FirstEvent event) {
+
+        int msg = (int)event.getMsg();
+        L.d( "=========="+msg);
+
+//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+
+        if (msg == 1) {
+            //1  is  Adminstartor
+            tv_1.setText("摄像头");
+            tv_2.setText("实时监控");
+        } else {
+            //2  is  user
+            tv_1.setText("我的");
+            tv_2.setText("个人信息");
+        }
+    }
+
 
 
     @OnClick({R.id.relativeLayout_kaoQin, R.id.relativeLayout_shenQing, R.id
@@ -154,7 +178,7 @@ public class HomeActivity extends BaseActivity {
                 break;
             case R.id.relativeLayout_ad:
                 intent = new Intent();
-                intent.setClass(HomeActivity.this, HomeActivity.class);
+                intent.setClass(HomeActivity.this, TongZhiActivity.class);
                 break;
             case R.id.relativeLayout_my:
                 if (role_status == 1) {
@@ -169,7 +193,7 @@ public class HomeActivity extends BaseActivity {
                 }
                 break;
         }
-        if(intent!=null){
+        if (intent != null) {
             startActivity(intent);
         }
     }
@@ -391,7 +415,39 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         CustomApplication.getJni().uninit();
         System.exit(0);
     }
+
+    @Override
+    protected void setUpMenu(int menuId) {
+        super.setUpMenu(R.menu.menu, "退出");
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_about:
+                //退出
+                CommonUtils.showLoadingDialog(HomeActivity.this);
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        //execute the task
+                        CommonUtils.hideLoadingDialog(HomeActivity.this);
+                        SharedPreferencesUtils.setLoadingStatement(HomeActivity.this, false);
+                        SharedPreferencesUtils.clear(HomeActivity.this);
+                        Toast.makeText(HomeActivity.this, getText(R.string.exit_msg), Toast
+                                .LENGTH_LONG).show();
+                    }
+                }, 2000);
+                Intent intent = new Intent();
+                intent.setClass(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
+
+
 }

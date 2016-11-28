@@ -81,6 +81,7 @@ public class CustomApplication extends Application {
 
     public static List<Companys> companys = new ArrayList<Companys>();
     public static List<String> data_list;
+    public static int  APP_ROLE_STATUS=1;//用户的类型1：管理员；2：普通用户
 
 
     //she--xiang--tou

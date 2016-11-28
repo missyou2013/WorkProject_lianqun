@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Request;
+import com.ypy.eventbus.EventBus;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -45,6 +46,7 @@ import activity.lianqun.herry.com.workproject_lianqun.core.CustomApplication;
 import activity.lianqun.herry.com.workproject_lianqun.models.Companys;
 import activity.lianqun.herry.com.workproject_lianqun.models.User;
 import activity.lianqun.herry.com.workproject_lianqun.utils.CommonUtils;
+import activity.lianqun.herry.com.workproject_lianqun.utils.FirstEvent;
 import activity.lianqun.herry.com.workproject_lianqun.utils.JsonUtil;
 import activity.lianqun.herry.com.workproject_lianqun.utils.L;
 import activity.lianqun.herry.com.workproject_lianqun.utils.SharedPreferencesUtils;
@@ -118,7 +120,8 @@ public class LoginActivity extends BaseActivity {
 //        if (CommonUtils.isOnline(this)) {
 //            getdata_company_list();
 //        } else {
-//            Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG)
+// .show();
 //        }
     }
 
@@ -144,13 +147,16 @@ public class LoginActivity extends BaseActivity {
 //                            getfriend_Data(name, pwd);
                             getdata_login(name, pwd);
                         } else {
-                            Toast.makeText(this, getText(R.string.ac_login_spinner_txt), Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, getText(R.string.ac_login_spinner_txt), Toast
+                                    .LENGTH_LONG).show();
                         }
                     } else {
-                        Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, getText(R.string.ac_login_error_net_txt), Toast
+                                .LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(this, getText(R.string.ac_login_error_promit_txt), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getText(R.string.ac_login_error_promit_txt), Toast
+                            .LENGTH_LONG).show();
                 }
                 break;
         }
@@ -189,16 +195,27 @@ public class LoginActivity extends BaseActivity {
                                     String c = object.optString("user");
                                     if (!TextUtils.isEmpty(c) && !c.equals("[]")) {
                                         user = JsonUtil.fromJson(c, User.class);
-                                        SharedPreferencesUtils.setUID(LoginActivity.this, String.valueOf(user.getId()));
-                                        SharedPreferencesUtils.setUserNickName(LoginActivity.this, user.getName());
-                                        SharedPreferencesUtils.setUserInfor(LoginActivity.this, user);
-                                        SharedPreferencesUtils.setLoadingStatement(LoginActivity.this, true);
-                                        SharedPreferencesUtils.setCompanyId(LoginActivity.this, Current_id);
-                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                        SharedPreferencesUtils.setUID(LoginActivity.this, String
+                                                .valueOf(user.getId()));
+                                        SharedPreferencesUtils.setUserNickName(LoginActivity
+                                                .this, user.getName());
+                                        SharedPreferencesUtils.setUserInfor(LoginActivity.this,
+                                                user);
+                                        SharedPreferencesUtils.setLoadingStatement(LoginActivity
+                                                .this, true);
+                                        SharedPreferencesUtils.setCompanyId(LoginActivity.this,
+                                                Current_id);
+                                        CustomApplication.APP_ROLE_STATUS = user.getStatus();
+                                        EventBus.getDefault().post(
+                                                new FirstEvent( CustomApplication.APP_ROLE_STATUS));
+                                        L.d("login---role_status===" + user.getStatus());
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity
+                                                .class));
                                         finish();
                                     }
                                 } else {
-                                    Toast.makeText(LoginActivity.this, getText(R.string.ac_login_fail), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, getText(R.string
+                                            .ac_login_fail), Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -240,7 +257,8 @@ public class LoginActivity extends BaseActivity {
 //                                                Companys[].class);
 //                                        data_list = new ArrayList<String>();
 //                                        for (int i = 0; i < companys.size(); i++) {
-//                                            data_list.add(i, String.valueOf(companys.get(i).getName()));
+//                                            data_list.add(i, String.valueOf(companys.get(i)
+// .getName()));
 //                                        }
 //                                    }
 //                                }
@@ -289,7 +307,8 @@ public class LoginActivity extends BaseActivity {
 
 
         popupWindow = new PopupWindow(contentView,
-                LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT, true);
+                LinearLayoutCompat.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams
+                .WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
 
@@ -318,7 +337,8 @@ public class LoginActivity extends BaseActivity {
 
     // 登录
     private void getfriend_Data(String uname, String pwd) {
-//        http://192.168.1.102:8888/waiqin/client/manager/login?loginname=zhangsan&companyid=14&password=123456
+//        http://192.168.1.102:8888/waiqin/client/manager/login?loginname=zhangsan&companyid=14
+// &password=123456
         AjaxParams params = new AjaxParams();
         params.put("loginname", uname);
         params.put("password", pwd);

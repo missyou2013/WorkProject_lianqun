@@ -45,6 +45,9 @@
         <activity
             android:name=".activity.MyActivity"
             android:label="我的"/>
+        <activity
+            android:name=".activity.TongZhiActivity"
+            android:label="通知公告"/>
 
         <activity
             android:name=".activity.AboutUsActivity"

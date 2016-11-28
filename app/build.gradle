@@ -54,5 +54,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile files('libs/HMSDK.jar')
-
+    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    compile files('libs/EventBus2.4.jar')
 }
